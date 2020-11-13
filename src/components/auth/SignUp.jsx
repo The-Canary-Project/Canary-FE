@@ -12,12 +12,12 @@ const SignUp = () => {
   
   const handleSubmit = async(event) => {
     event.preventDefault();
+
     await postSignUp({ userName, password, userRole })
       .then(console.log);
     setUserName('');
     setPassword('');
     setUserRole('student');
-
   };
 
   return (
@@ -26,7 +26,7 @@ const SignUp = () => {
         data-testid="signup-username"
         type="text"
         placeholder="Username"
-        value= {userName}
+        value={userName}
         onChange={({ target }) => setUserName(target.value)}
       />
 
@@ -50,11 +50,7 @@ const SignUp = () => {
       </select>
       <button>Sign Up</button>
     </form>
- 
- 
   );
-
-
 };
 
 export default SignUp;

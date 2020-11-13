@@ -29,17 +29,7 @@ describe('Signup Component', () => {
     return waitFor(() => {
       expect(userNameInput.value).toEqual('');
       expect(passwordInput.value).toEqual('');
-      expect(userRoleInput.value).toEqual('student');
-
-      
+      expect(userRoleInput.value).toEqual('student'); 
     });
-
-
-
-
-
-
   });
-  
 });
-
