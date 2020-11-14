@@ -1,8 +1,8 @@
 import React from 'react';
-import Login from '../auth/Login';
+import { Auth } from '../auth/Auth';
 
 export default function App() {
   return (
-    <Login />
+    <Auth />
   );
 }
