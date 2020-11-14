@@ -13,9 +13,9 @@ export const Auth = () => {
   return (
     <div>
       {
-        displaySignUp ? <SignUp /> :  <Login />
+        displaySignUp ? <SignUp /> : <Login />
       }
-      <button onClick={toggle}>{displaySignUp ? 'Log In' : 'Sign Up'}</button>
+      <button className={styles.authToggle} onClick={toggle}>{displaySignUp ? 'Log In' : 'Sign Up'}</button>
     </div>
   );
 };
