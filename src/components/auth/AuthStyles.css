@@ -1,0 +1,49 @@
+* {
+  --black: #000229; 
+  --white: #F4F4F8; 
+  --blue: #009FB7;  
+  --yellow: #FFE045;  
+  --orange: #FE4A49;  
+  --grey: #E6E6EA;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.loginForm, .signupForm {
+  width: 30vw;
+  padding: 3rem;
+  border: 2px solid var(--black);
+  border-radius: 5px;
+  background-color: white;
+
+  button {
+    background-color: var(--blue);
+    border: 1px solid rgb(5, 90, 124);
+    border-radius: 5px;
+    font-size: 1.2rem;
+  }
+
+  button:hover {
+    background-color: rgba(77, 160, 199, 0.753);
+  }
+}
+
+.authToggle {
+  background-color: var(--blue);
+  border: 1px solid rgb(5, 90, 124);
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+.authToggle:hover {
+  background-color: rgba(77, 160, 199, 0.753);
+}
+
+input, select {
+  background-color: white;
+  height: 2rem;
+  padding-left: 1.2rem;
+}
