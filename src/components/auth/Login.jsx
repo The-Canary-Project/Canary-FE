@@ -1,16 +1,25 @@
 import React from 'react';
 import { useState } from 'react';
 import { postLogin } from '../../services/AuthService';
+import { useDispatch } from 'react-redux';
+import { 
+  setUserNameReducer, 
+  setUserRoleReducer 
+} from '../../actions/authActions';
 
 const Login = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const handleSubmit = async(event) => {
     event.preventDefault();
 
     await postLogin({ userName, password })
-      .then(console.log());
+      .then(res => {
+        dispatch(setUserNameReducer(res.userName));
+        dispatch(setUserRoleReducer(res.userRole));
+      });
     setUserName('');
     setPassword('');
   };
