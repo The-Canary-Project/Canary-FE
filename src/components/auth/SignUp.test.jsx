@@ -22,7 +22,7 @@ describe('Signup Component', () => {
     const userButton = screen.getByRole('button');
 
     userEvent.type(userNameInput, 'steve77');
-    userEvent.type(passwordInput, 'password');
+    userEvent.type(passwordInput, 'password'); 
     userEvent.type(userRoleInput, 'teacher');
     userEvent.click(userButton);
 
