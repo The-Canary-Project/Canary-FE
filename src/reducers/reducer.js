@@ -21,7 +21,7 @@ const initialState = {
   net: {},
   totalAnswers: 0,
   classroom: null,
-  chatItems: [],
+  chatItems: [{ author: 'A', message: 'M' }],
   questions: [],
   currentQuestion: null
 };
