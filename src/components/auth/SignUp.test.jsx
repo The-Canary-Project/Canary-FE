@@ -3,6 +3,8 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import SignUp from './SignUp';
 import userEvent from '@testing-library/user-event';
+import store from '../../store';
+import { Provider } from 'react-redux';
 
 jest.mock('../../services/AuthService.js');
 
@@ -15,7 +17,11 @@ describe('Signup Component', () => {
         userRole: 'teacher'
       }
     );
-    render(<SignUp />);
+    render(
+      <Provider store={store}>
+        <SignUp />
+      </Provider>
+    );
     const userNameInput = screen.getByTestId('signup-username');
     const passwordInput = screen.getByTestId('signup-password');
     const userRoleInput = screen.getByTestId('signup-userrole');
