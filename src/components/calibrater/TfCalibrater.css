@@ -52,10 +52,12 @@
 
   height: 480px;
   width: 640px;
+  transform: rotateY(180deg);
+  -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+  -moz-transform:rotateY(180deg); /* Firefox */
 
   position: relative;
   video{
-    
     height: 480px;
     width: 640px;
   }
@@ -69,7 +71,9 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-
+  transform: rotateY(180deg);
+  -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+  -moz-transform:rotateY(180deg); /* Firefox */
 
   
 }

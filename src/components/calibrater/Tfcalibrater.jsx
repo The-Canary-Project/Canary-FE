@@ -34,44 +34,38 @@ export default function TfCalibrater() {
       image?.dispose();
 
 
-    }, 500)
+    }, 500);
 
 
   }, [position]);
 
-  const train = (position) => {
+  const train = name => {
     const image = tf.browser.fromPixels(video.current);
     const logits = net.infer(image, 'conv_preds');
-    classifier.addExample(logits, position);
+    classifier.addExample(logits, name);
     logits.dispose();
     image.dispose();
 
   };
 
-  const handleClick = () => {
-    const array = ['a', 'b', 'c', 'd'];
-    for(let i=0; i<array.length; i++) {
-      console.log(array[i]);
-      setPosition(array[i]);
-      const calibrateInterval = setInterval(()=> {
-            
-        train(array[i])
-      }, 500)
-      setTimeout(()=> {
-        clearInterval(calibrateInterval);
-    
-      }, 3000)
+  const handleCalibrate = ({ target }) => {
+    const training = setInterval(() => {
+      train(target.name);
+      console.log('machine trained');
+    }, 250);
+    setTimeout(() => {
+      clearInterval(training);
+    }, 3000);
+  };
 
-    }
-
-
-  }
-
- return (
-   <>
-    <button name="calibrate" onClick = {handleClick}>Start Calibration</button>
-    <h2>position: {position}</h2>
-    <h2>feedback: {feedback}</h2>
+  return (
+    <>
+      <button name="a" onClick={handleCalibrate}>a</button>
+      <button name="b" onClick={handleCalibrate}>b</button>
+      <button name="c" onClick={handleCalibrate}>c</button>
+      <button name="d" onClick={handleCalibrate}>d</button>
+      <h2>position: {position}</h2>
+      <h2>feedback: {feedback}</h2>
       <div className={styles.parent}>
         <div className={styles.gridparent}>
           <div className = {`${styles.topleftbox}`}>A</div>
@@ -80,17 +74,17 @@ export default function TfCalibrater() {
           <div className = {`${styles.bottomrightbox}`}>D</div>
           
 
-      </div>
-      <video ref={video} autoPlay></video>
+        </div>
+        <video ref={video} autoPlay></video>
 
         
       </div>
 
-   </>
+    </>
 
 
 
- );
+  );
 
 
 
