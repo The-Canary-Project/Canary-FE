@@ -37,29 +37,54 @@ export default function TfCalibrater() {
     }, 500)
 
 
-  }, []);
+  }, [position]);
 
-  const train = ({ target }) => {
+  const train = (position) => {
     const image = tf.browser.fromPixels(video.current);
     const logits = net.infer(image, 'conv_preds');
-    classifier.addExample(logits, target.name);
+    classifier.addExample(logits, position);
     logits.dispose();
     image.dispose();
 
   };
 
-  // handleSubmit here
+  const handleClick = () => {
+    const array = ['a', 'b', 'c', 'd'];
+    for(let i=0; i<array.length; i++) {
+      console.log(array[i]);
+      setPosition(array[i]);
+      const calibrateInterval = setInterval(()=> {
+            
+        train(array[i])
+      }, 500)
+      setTimeout(()=> {
+        clearInterval(calibrateInterval);
+    
+      }, 3000)
+
+    }
+
+
+  }
 
  return (
    <>
-    <h2>{position}</h2>
-    <h2>{result}</h2>
+    <button name="calibrate" onClick = {handleClick}>Start Calibration</button>
+    <h2>position: {position}</h2>
     <h2>feedback: {feedback}</h2>
+      <div className={styles.parent}>
+        <div className={styles.gridparent}>
+          <div className = {`${styles.topleftbox}`}>A</div>
+          <div className = {`${styles.toprightbox}`}>B</div>
+          <div className = {`${styles.bottomleftbox}`}>C</div>
+          <div className = {`${styles.bottomrightbox}`}>D</div>
+          
 
-    <div className={styles.parent}>
+      </div>
+      <video ref={video} autoPlay></video>
 
-      
-    </div>
+        
+      </div>
 
    </>
 
