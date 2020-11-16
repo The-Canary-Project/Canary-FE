@@ -33,7 +33,6 @@ const SignUp = () => {
 
   return (
     <section className={styles.signupContainer}>
-      <h1>Canary</h1>
       <form className={styles.signupForm} onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
         <input
