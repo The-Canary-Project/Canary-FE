@@ -1,6 +1,6 @@
-export const SET_CHATROOM = 'SET_CHATROOM';
-export const setChatroom = roomNumber => ({
-  type: SET_CHATROOM,
+export const SET_CLASSROOM = 'SET_CLASSROOM';
+export const setClassroom = roomNumber => ({
+  type: SET_CLASSROOM,
   payload: roomNumber
 });
 
