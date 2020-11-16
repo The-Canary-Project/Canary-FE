@@ -9,3 +9,13 @@ export const setNetState = net => ({
   type: SET_NET_STATE,
   payload: net
 });
+
+export const SET_TOTAL_ANSWERS = 'SET_TOTAL_ANSWERS';
+export const setTotalAnswers = () => ({
+  type: SET_TOTAL_ANSWERS
+});
+
+export const SET_CORRECT_ANSWERS = 'SET_CORRECT_ANSWERS';
+export const setCorrectAnswers = () => ({
+  type: SET_CORRECT_ANSWERS
+});
