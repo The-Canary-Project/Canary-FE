@@ -27,7 +27,6 @@ const Login = () => {
 
   return (
     <section className={styles.loginContainer}>
-      <h1>Canary</h1>
       <form className={styles.loginForm} onSubmit={handleSubmit}>
         <h2>Login</h2>
         <input

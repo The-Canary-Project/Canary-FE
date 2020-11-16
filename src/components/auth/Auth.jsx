@@ -11,11 +11,17 @@ export const Auth = () => {
   };
 
   return (
-    <div>
-      {
-        displaySignUp ? <SignUp /> : <Login />
-      }
-      <button className={styles.authToggle} onClick={toggle}>{displaySignUp ? 'Log In' : 'Sign Up'}</button>
-    </div>
+    <section className={styles.authPage}>
+      <h1>CANARY</h1>
+      <div className={styles.authContainer}>
+        {
+          displaySignUp ? <SignUp /> : <Login />
+        }
+
+        <section className={styles.authToggleButtonContainer} >
+          <p onClick={toggle}>{displaySignUp ? 'Existing user?' : 'New user?'}</p>
+        </section>
+      </div>
+    </section>
   );
 };
