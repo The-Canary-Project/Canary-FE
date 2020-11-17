@@ -18,12 +18,6 @@ export const Play = () => {
     const stream = await window.navigator.mediaDevices.getUserMedia({ video });
     video.current.srcObject = stream;
 
-    // const test = setInterval(() => {
-    //   setTimer(state => state - 1);
-    // }, 1000);
-    
-    // setTimeout(() => (clearInterval(test)), timer * 1000);
-
     // setInterval(async() => {
     //   const image = tf.browser.fromPixels(video.current);
     //   const logits = net.infer(image, 'conv_preds');
@@ -35,10 +29,13 @@ export const Play = () => {
 
   }, []);
 
-
+  // evaluate game results here and update socket and state score
+  if(timer === 0) {
+    console.log('evaluate gamne');
+  }
 
   return (
-    <div>
+    <div className={styles.play}>
       <Timer timer={timer} handleTimer={setTimer} />
       <div className={styles.parent}>
         <div className={styles.gridparent}>

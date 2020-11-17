@@ -33,6 +33,13 @@
   border-left: 1px solid black;
   border-top: 1px solid black;
 }
+
+.play {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
 .parent{
   height: 480px;
   width: 640px;
