@@ -33,7 +33,7 @@ export default function reducer(state = initialState, action) {
       return { ...state, userName: action.payload };
     case SET_USERROLE:
       return { ...state, userRole: action.payload };
-
+      
     //CALIBRATE MODEL
     case SET_CLASSIFIER_STATE:
       return { ...state, classifier: action.payload };

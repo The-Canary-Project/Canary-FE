@@ -8,6 +8,7 @@ import Chat from '../chat/Chat';
 export default function App() {
   return (
     <Provider store={store}>
+      <Auth />
       <TfCalibrater />
       <Chat />
     </Provider>
