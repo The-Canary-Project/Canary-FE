@@ -73,8 +73,6 @@
   transform: rotateY(180deg);
   -webkit-transform:rotateY(180deg); /* Safari and Chrome */
   -moz-transform:rotateY(180deg); /* Firefox */
-
-  
 }
 .feedback{
   background-color: green;
@@ -90,7 +88,6 @@
   button {
     margin: 15px;
     padding: 10px;
-
   }
 
   .calibrateButtons {
