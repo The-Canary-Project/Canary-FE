@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const PromptItem = ({ text, handleClick }) => {
+const PromptItem = ({ prompt, handleClick }) => {
   return (
     <div>
-      <p>Question: {text}</p>
-      <button onClick={handleClick}>Ask Question</button>
+      <p>Question: {prompt.text}</p>
+      <button onClick={handleClick} value={prompt}>Ask Question</button>
     </div>
   )
 }
 
 PromptItem.propTypes = {
-  text: PropTypes.string.isRequired,
+  prompt: PropTypes.object.isRequired,
   handleClick: PropTypes.func.isRequired
 }
 
