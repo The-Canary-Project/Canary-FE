@@ -18,14 +18,14 @@ export const Play = () => {
     const stream = await window.navigator.mediaDevices.getUserMedia({ video });
     video.current.srcObject = stream;
 
-    // setInterval(async() => {
-    //   const image = tf.browser.fromPixels(video.current);
-    //   const logits = net.infer(image, 'conv_preds');
-    //   const result = await classifier.predictClass(logits);
-    //   setFeedback(result.label);
-    //   logits.dispose();
-    //   image.dispose();
-    // }, 500);
+    setInterval(async() => {
+      const image = tf.browser.fromPixels(video.current);
+      const logits = net.infer(image, 'conv_preds');
+      const result = await classifier.predictClass(logits);
+      setFeedback(result.label);
+      logits.dispose();
+      image.dispose();
+    }, 500);
 
   }, []);
 
