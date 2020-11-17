@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ChatItem(message) {
+function ChatItem({message, key}) {
   return (
-    <div key={Date.now() + message.author}>
+    <div key={key}>
       {message.author}: {message.message}
     </div>
   );

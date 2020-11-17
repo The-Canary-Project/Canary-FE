@@ -5,13 +5,13 @@ import ChatItem from './ChatItem';
 function ChatList() {
   const messageArray = useSelector(state => state.chatItems);
 
-  const messageElements = messageArray.map(message => {
-    return ChatItem(message);
+  const messageElements = messageArray.map((message, i) => {
+    return <ChatItem message={message} key={i}/>;
   });
 
   return (
     <div>
-      {messageElements} 
+      {messageElements}
     </div>
   );
 }
