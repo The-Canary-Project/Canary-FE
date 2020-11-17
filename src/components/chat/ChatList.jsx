@@ -1,22 +1,26 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ChatItem from './ChatItem';
-import io from 'socket.io-client';
 import { setChatItem } from '../../actions/classroomActions';
+import useSocket from '../../provider/socketProvider';
 
 function ChatList() {
-  useEffect(() => {
-    const socket = io('localhost:8080');
+  const socket = useSocket();
+  const dispatch = useDispatch();
 
+  useEffect(() => {
     socket.on('RECEIVE_MESSAGE', (data) => {
       
       dispatch(setChatItem(
         { author: data.author, message: data.message }
       ));
     });
+
+    return () => {
+      socket.off('RECEIVE_MESSAGE');
+    };
   }, []);
   
-  const dispatch = useDispatch();
   const messageArray = useSelector(state => state.chatItems);
 
   const messageElements = messageArray.map((message, i) => {

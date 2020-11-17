@@ -1,13 +1,16 @@
-import React from 'react'
-import TfCalibrater from '../calibrater/Tfcalibrater'
-import Chat from '../chat/Chat'
+import React from 'react';
+import TfCalibrater from '../calibrater/Tfcalibrater';
+import Chat from '../chat/Chat';
+import SocketProvider from '../../provider/socketProvider';
 
 export default function StudentDashboard() {
   return (
     <div>
-      Student Dashboard
-      <TfCalibrater />
-      <Chat />
+      <SocketProvider>
+        Student Dashboard
+        <TfCalibrater />
+        <Chat />
+      </SocketProvider>
     </div>
-  )
+  );
 }

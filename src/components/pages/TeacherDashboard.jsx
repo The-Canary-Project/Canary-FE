@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import SocketProvider from '../../provider/socketProvider';
 
 export default function TeacherDashboard() {
   return (
     <div>
-      Teacher Dashboard
+      <SocketProvider>
+        Teacher Dashboard
+      </SocketProvider>
     </div>
-  )
+  );
 }
