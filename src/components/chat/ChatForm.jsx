@@ -10,6 +10,9 @@ function ChatForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (message === '') return;
+
     dispatch(setChatItem(
       { author: user, message }
     ));
