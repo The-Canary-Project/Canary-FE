@@ -1,21 +1,25 @@
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setChatItem } from '../../actions/classroomActions';
+import { useSelector } from 'react-redux';
+import io from 'socket.io-client';
 
 function ChatForm() {
   const [message, setMessage] = useState('');
-  const dispatch = useDispatch();
   const user = useSelector(state => state.userName);
+  const socket = io('localhost:8080', {
+    withCredentials: true
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (message === '') return;
+    if(message === '') return;
 
-    dispatch(setChatItem(
-      { author: user, message }
-    ));
+    socket.emit('SEND_MESSAGE', {
+      author: user,
+      message
+    });
+
     setMessage('');
   };
 

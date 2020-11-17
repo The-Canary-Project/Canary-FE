@@ -14,6 +14,9 @@ import {
 import StudentDashboard from '../pages/StudentDashboard';
 import TeacherDashboard from '../pages/TeacherDashboard';
 
+import { Play } from '../play/Play';
+
+
 export default function App() {
   return (
     <Provider store={store}>
