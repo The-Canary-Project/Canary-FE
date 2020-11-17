@@ -5,7 +5,7 @@ import { useSocket } from '../../provider/socketProvider';
 
 function ChatForm() {
   const [message, setMessage] = useState('');
-  const user = useSelector(state => state.userName);
+  const user = localStorage.getItem('userName');
   const socket = useSocket();
 
   const handleSubmit = (event) => {
