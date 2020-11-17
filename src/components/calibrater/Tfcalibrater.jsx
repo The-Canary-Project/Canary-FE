@@ -10,15 +10,13 @@ import styles from './TfCalibrater.css';
 export default function TfCalibrater() {
 
   const video = useRef();
-  const [classifier, setClassifier] = useState();
+  const [classifier, setClassifier] = useState('null');
   const [net, setNet] = useState();
   const [feedback, setFeedback] = useState();
   const [isVisible, setVisibility] = useState(false);
   const [calibratedPositions, setCalibratedPositions] = useState([]);
   const dispatch = useDispatch();
 
- 
-  
   useEffect(async() => {
     const classifier = KNN.create();
     setClassifier(classifier);
@@ -26,39 +24,35 @@ export default function TfCalibrater() {
     setNet(net);
     const stream = await window.navigator.mediaDevices.getUserMedia({ video });
     video.current.srcObject = stream;
-
-    const training = setInterval(() => {
-      train('no answer');
-      console.log('machine trained');
-    }, 250);
-    setTimeout(() => {
-      clearInterval(training);
-    }, 3000);
-
+    console.log(stream)
     setInterval(async() => {
       const image = tf.browser.fromPixels(video.current);
-      const logits = net?.infer(image, 'conv_preds');
-      const result = await classifier?.predictClass(logits);
-      setFeedback(result?.label);
-      logits?.dispose();
-      image?.dispose();
-
-
+      const logits = net.infer(image, 'conv_preds');
+      classifier.addExample(logits, 0)
+      const result = await classifier.predictClass(logits);
+      
+      setFeedback(result.label);
+      
+      logits.dispose();
+      image.dispose();
     }, 500);
 
+    setTimeout(() => train('initial'), 10000);
 
   }, []);
 
   const train = name => {
     const image = tf.browser.fromPixels(video.current);
     const logits = net.infer(image, 'conv_preds');
+    console.log(logits);
     classifier.addExample(logits, name);
     logits.dispose();
     image.dispose();
   };
 
   const handleCalibrate = ({ target }) => {
-    setCalibratedPositions(state => state.push(target.name));
+    setCalibratedPositions(state => ([...state, target.name]));
+    
     setVisibility(true);
     const training = setInterval(() => {
       train(target.name);
@@ -68,10 +62,14 @@ export default function TfCalibrater() {
       clearInterval(training);
       setVisibility(false);
     }, 4500);
+   
   };
 
   const handleAcceptFeedback = () => {
+   
     if(calibratedPositions.length === 4) {
+    
+    
       dispatch(setNetState(net));
       dispatch(setClassifierState(classifier));
       alert('calibration model has been set');
@@ -85,7 +83,7 @@ export default function TfCalibrater() {
     <>
       <div className={styles.upperCalibration}>
         <img 
-          src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/01/timer-progress-animated.gif?ssl=1" 
+          src="https://thumbs.gfycat.com/CoarseActiveGibbon-small.gif" 
           alt="timer" 
           className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
         <div className={styles.parent}>
@@ -98,6 +96,9 @@ export default function TfCalibrater() {
           <video ref={video} autoPlay></video>
         </div>
       </div>
+      <div className={styles.instructions}>
+      <p>Calibrate your camera. Press the calibrate button and place your hand in the corresponding quadrant on the video until the timer runs out. For best results, move your hand around the quadrant during the timed period</p>
+      </div>
       <div className={styles.buttonParent}>
         <div className={styles.calibrateButtons}>
           <button name="a" onClick={handleCalibrate}>Calibrate A</button>
@@ -105,15 +106,10 @@ export default function TfCalibrater() {
           <button name="c" onClick={handleCalibrate}>Calibrate C</button>
           <button name="d" onClick={handleCalibrate}>Calibrate D</button>
         </div>
-        <button onClick={handleAcceptFeedback} >Accept Calibrate</button>
+        {
+          calibratedPositions.length === 4 && <button onClick={handleAcceptFeedback} >Accept Calibrate</button>
+        }
       </div>
     </>
-
-
-
   );
-
-
-
 }
-

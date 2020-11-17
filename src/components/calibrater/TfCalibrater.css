@@ -1,55 +1,71 @@
+.instructions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  
+}
+p {
 
+  padding: 5px;
+  width: 640px;
+  background-color:  #009FB7;  
+  
+}
 .topleftbox{
-  
-  
   width: 320px;
   height: 240px;
   margin: auto;
   opacity: 0.5;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
-
-
-
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  
 }
+
 .toprightbox{
-  
-  
   width: 320px;
   height: 240px;
   margin: auto;
   opacity: 0.5;
   border-left: 1px solid black;
   border-bottom: 1px solid black;
- 
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
+
 .bottomleftbox{
-  
-  
   width: 320px;
   height: 240px;
   margin: auto;
   opacity: 0.5;
   border-right: 1px solid black;
   border-top: 1px solid black;
-
-
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
+
 .bottomrightbox{
- 
-  
   width: 320px;
   height: 240px;
   margin: auto;
   opacity: 0.5;
   border-left: 1px solid black;
   border-top: 1px solid black;
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
   
-
-
 }
 .parent{
-  
   height: 480px;
   width: 640px;
   transform: rotateY(180deg);
@@ -75,7 +91,7 @@
     position: absolute;
     left: 10px;
     top: 10px;
-    width: 200px;
+    width: 100px;
   }
 }
 .gridparent{
@@ -88,8 +104,6 @@
   transform: rotateY(180deg);
   -webkit-transform:rotateY(180deg); /* Safari and Chrome */
   -moz-transform:rotateY(180deg); /* Firefox */
-
-  
 }
 .feedback{
   background-color: green;
@@ -105,7 +119,6 @@
   button {
     margin: 15px;
     padding: 10px;
-
   }
 
   .calibrateButtons {
