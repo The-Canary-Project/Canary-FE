@@ -18,8 +18,6 @@ export default function TfCalibrater() {
   const [calibratedPositions, setCalibratedPositions] = useState([]);
   const dispatch = useDispatch();
 
- 
-  
   useEffect(async() => {
     const classifier = KNN.create();
     setClassifier(classifier);
@@ -28,7 +26,6 @@ export default function TfCalibrater() {
     const stream = await window.navigator.mediaDevices.getUserMedia({ video });
     video.current.srcObject = stream;
 
-
     setInterval(async() => {
       const image = tf.browser.fromPixels(video.current);
       const logits = net.infer(image, 'conv_preds');
@@ -36,15 +33,13 @@ export default function TfCalibrater() {
       setFeedback(result.label);
       logits.dispose();
       image.dispose();
-
-
     }, 500);
+
     setTimeout(() => train('initial'), 10000);
 
   }, []);
 
   const train = name => {
-    console.log(video);
     const image = tf.browser.fromPixels(video.current);
     const logits = net.infer(image, 'conv_preds');
     classifier.addExample(logits, name);
@@ -105,12 +100,6 @@ export default function TfCalibrater() {
         }
       </div>
     </>
-
-
-
   );
-
-
-
 }
 
