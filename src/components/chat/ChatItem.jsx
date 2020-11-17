@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ChatItem({message, key}) {
+function ChatItem({ message, key }) {
   return (
     <div key={key}>
       {message.author}: {message.message}
