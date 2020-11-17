@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TfCalibrater from '../calibrater/Tfcalibrater';
 import { Play } from '../play/Play';
 import Chat from '../chat/Chat';
+import { SocketProvider } from '../../provider/socketProvider';
 
 export default function StudentDashboard() {
   const [play, setPlay] = useState(false);
@@ -10,13 +11,14 @@ export default function StudentDashboard() {
     play ? setPlay(false) : setPlay(true);
   };
   return (
-    <div>
-      Student Dashboard
+    <SocketProvider>
+      
+      <h1>Student Dashboard</h1>
       {
         play ? <Play /> : <TfCalibrater /> 
       }
-      {/* <Chat /> */}
       <button onClick={togglePlay}>Play</button>
-    </div>
+      <Chat />
+    </SocketProvider>
   );
 }

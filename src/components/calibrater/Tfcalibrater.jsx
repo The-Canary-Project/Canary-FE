@@ -32,6 +32,7 @@ export default function TfCalibrater() {
     setFeedbackLoop(setInterval(async() => {
       const image = tf.browser.fromPixels(video.current);
       const logits = net.infer(image, 'conv_preds');
+      classifier.addExample(logits, 0);
       const result = await classifier.predictClass(logits);
       setFeedback(result.label);
       logits.dispose();
@@ -50,7 +51,7 @@ export default function TfCalibrater() {
   };
 
   const handleCalibrate = ({ target }) => {
-    setCalibratedPositions(state => ([...state, target.name]));
+   setCalibratedPositions(state => ([...state, target.name]));
     setVisibility(true);
     const training = setInterval(() => {
       train(target.name);
@@ -78,7 +79,7 @@ export default function TfCalibrater() {
     <>
       <div className={styles.upperCalibration}>
         <img 
-          src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/01/timer-progress-animated.gif?ssl=1" 
+          src="https://thumbs.gfycat.com/CoarseActiveGibbon-small.gif" 
           alt="timer" 
           className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
         <div className={styles.parent}>
@@ -91,7 +92,9 @@ export default function TfCalibrater() {
           <video ref={video} autoPlay></video>
         </div>
       </div>
+    
       <div className={styles.buttonParent}>
+        <p>Press the calibrate button and place your hand in the corresponding quadrant of the of the video. For best results, move your hand to different positions within the quadrant. A transparent green color will indicate that readings are being captured. After the timer finishes, repeat the process until you have calibrated all quadrants. Then press 'Accept Calibrate' to accept the calibration.</p>
         <div className={styles.calibrateButtons}>
           <button name="a" onClick={handleCalibrate}>Calibrate A</button>
           <button name="b" onClick={handleCalibrate}>Calibrate B</button>
