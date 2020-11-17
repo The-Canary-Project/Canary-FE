@@ -2,9 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postSignUp } from '../../services/AuthService';
-import { 
-  setUserNameReducer, 
-  setUserRoleReducer 
+import {
+  setUserNameReducer,
+  setUserRoleReducer
 } from '../../actions/authActions';
 
 
@@ -16,16 +16,16 @@ const SignUp = () => {
   const [userRole, setUserRole] = useState('student');
   const dispatch = useDispatch();
 
-
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await postSignUp({ userName, password, userRole })
+    const signUp = await postSignUp({ userName, password, userRole })
+
     // set global state here
-      .then(res => {
-        dispatch(setUserNameReducer(res.userName));
-        dispatch(setUserRoleReducer(res.userRole));
-      });
+    dispatch(setUserNameReducer(signUp.userName));
+    dispatch(setUserRoleReducer(signUp.userRole));
+
+    window.location.href=`/${signUp.userRole}`
     setUserName('');
     setPassword('');
     setUserRole('student');
