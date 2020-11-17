@@ -1,55 +1,40 @@
 
 .topleftbox{
-  
-  
   width: 320px;
   height: 240px;
   margin: auto;
   opacity: 0.5;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
-
-
-
 }
+
 .toprightbox{
-  
-  
   width: 320px;
   height: 240px;
   margin: auto;
   opacity: 0.5;
   border-left: 1px solid black;
   border-bottom: 1px solid black;
- 
 }
+
 .bottomleftbox{
-  
-  
   width: 320px;
   height: 240px;
   margin: auto;
   opacity: 0.5;
   border-right: 1px solid black;
   border-top: 1px solid black;
-
-
 }
+
 .bottomrightbox{
- 
-  
   width: 320px;
   height: 240px;
   margin: auto;
   opacity: 0.5;
   border-left: 1px solid black;
   border-top: 1px solid black;
-  
-
-
 }
 .parent{
-  
   height: 480px;
   width: 640px;
   transform: rotateY(180deg);

@@ -10,6 +10,7 @@ import styles from './TfCalibrater.css';
 export default function TfCalibrater() {
 
   const video = useRef();
+
   const [classifier, setClassifier] = useState();
   const [net, setNet] = useState();
   const [feedback, setFeedback] = useState();
@@ -27,29 +28,23 @@ export default function TfCalibrater() {
     const stream = await window.navigator.mediaDevices.getUserMedia({ video });
     video.current.srcObject = stream;
 
-    const training = setInterval(() => {
-      train('no answer');
-      console.log('machine trained');
-    }, 250);
-    setTimeout(() => {
-      clearInterval(training);
-    }, 3000);
 
     setInterval(async() => {
       const image = tf.browser.fromPixels(video.current);
-      const logits = net?.infer(image, 'conv_preds');
-      const result = await classifier?.predictClass(logits);
-      setFeedback(result?.label);
-      logits?.dispose();
-      image?.dispose();
+      const logits = net.infer(image, 'conv_preds');
+      const result = await classifier.predictClass(logits);
+      setFeedback(result.label);
+      logits.dispose();
+      image.dispose();
 
 
     }, 500);
-
+    setTimeout(() => train('initial'), 10000);
 
   }, []);
 
   const train = name => {
+    console.log(video);
     const image = tf.browser.fromPixels(video.current);
     const logits = net.infer(image, 'conv_preds');
     classifier.addExample(logits, name);
@@ -58,7 +53,7 @@ export default function TfCalibrater() {
   };
 
   const handleCalibrate = ({ target }) => {
-    setCalibratedPositions(state => state.push(target.name));
+    setCalibratedPositions(state => ([...state, target.name]));
     setVisibility(true);
     const training = setInterval(() => {
       train(target.name);
@@ -105,7 +100,9 @@ export default function TfCalibrater() {
           <button name="c" onClick={handleCalibrate}>Calibrate C</button>
           <button name="d" onClick={handleCalibrate}>Calibrate D</button>
         </div>
-        <button onClick={handleAcceptFeedback} >Accept Calibrate</button>
+        {
+          calibratedPositions.length === 4 && <button onClick={handleAcceptFeedback} >Accept Calibrate</button>
+        }
       </div>
     </>
 
