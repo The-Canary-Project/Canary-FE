@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import useSocket from '../../provider/socketProvider';
+import { useSocket } from '../../provider/socketProvider';
 
 function ChatForm() {
   const [message, setMessage] = useState('');
@@ -19,10 +19,6 @@ function ChatForm() {
     });
 
     setMessage('');
-
-    return () => {
-      socket.off('SEND_MESSAGE');
-    };
   };
 
   const handleChange = ({ target }) => {

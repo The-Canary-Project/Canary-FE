@@ -1,7 +1,7 @@
 import React from 'react';
 import TfCalibrater from '../calibrater/Tfcalibrater';
 import Chat from '../chat/Chat';
-import SocketProvider from '../../provider/socketProvider';
+import { SocketProvider } from '../../provider/socketProvider';
 
 export default function StudentDashboard() {
   return (

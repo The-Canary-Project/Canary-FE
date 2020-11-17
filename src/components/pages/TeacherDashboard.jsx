@@ -1,5 +1,5 @@
 import React from 'react';
-import SocketProvider from '../../provider/socketProvider';
+import { SocketProvider } from '../../provider/socketProvider';
 
 export default function TeacherDashboard() {
   return (
