@@ -2,20 +2,15 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Auth } from '../auth/Auth';
 import store from '../../store';
-import TfCalibrater from '../calibrater/Tfcalibrater';
-import Chat from '../chat/Chat';
 import { AboutUs } from '../about-us/AboutUs';
-import Header from '../header/Header'
+import Header from '../header/Header';
 import {
   BrowserRouter as Router,
   Route,
   Switch
-} from 'react-router-dom'
+} from 'react-router-dom';
 import StudentDashboard from '../pages/StudentDashboard';
 import TeacherDashboard from '../pages/TeacherDashboard';
-
-import { Play } from '../play/Play';
-
 
 export default function App() {
   return (
