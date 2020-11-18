@@ -19,6 +19,7 @@ const initialState = {
   userRole: '',
   classifier: {},
   net: {},
+  correctAnswers: 0,
   totalAnswers: 0,
   classroom: null,
   chatItems: [],
