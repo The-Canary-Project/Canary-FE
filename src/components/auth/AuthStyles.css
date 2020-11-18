@@ -14,9 +14,21 @@ h1 {
 }
 
 .authPage {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: min-content auto;
+  
+  justify-items: center;
   align-items: center;
+
+  img {
+    width: 100%;
+  }
+
+  .authLargeIcon {
+    height: 100vh;
+    background-color: black;
+    width: 30vw;
+  }
 }
 
 /* LOGIN/SIGNUP FORM STYLES */
