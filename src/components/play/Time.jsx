@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const Timer = ({ timer, handleTimer }) => {
+const Timer = ({ question, timer, handleTimer }) => {
 
   useEffect(() => {
     const timeRemaining = setInterval(() => {
@@ -9,7 +9,7 @@ const Timer = ({ timer, handleTimer }) => {
       handleTimer(state => state - 1);
     }, 1000);
     setTimeout(() => (clearInterval(timeRemaining)), timer * 1000);
-  }, []);
+  }, [question]);
 
   return (
     <div>
@@ -19,7 +19,8 @@ const Timer = ({ timer, handleTimer }) => {
 };
 
 Timer.propTypes = { 
-  timer: PropTypes.number.isRequired,
+  question: PropTypes.object,
+  timer: PropTypes.number,
   handleTimer: PropTypes.func.isRequired
 };
 
