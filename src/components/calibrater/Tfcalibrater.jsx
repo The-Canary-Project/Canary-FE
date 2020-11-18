@@ -3,41 +3,43 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as tf from '@tensorflow/tfjs';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as KNN from '@tensorflow-models/knn-classifier';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setClassifierState, setNetState } from '../../actions/studentActions';
 import styles from './TfCalibrater.css';
 
 export default function TfCalibrater() {
 
   const video = useRef();
-
+  
+  const knn = useSelector(state => state.classifier);
+  const netState = useSelector(state => state.net);
   const [classifier, setClassifier] = useState();
   const [net, setNet] = useState();
   const [feedback, setFeedback] = useState();
+  const [feedbackLoop, setFeedbackLoop] = useState();
   const [isVisible, setVisibility] = useState(false);
   const [calibratedPositions, setCalibratedPositions] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(async() => {
-    const classifier = KNN.create();
+    const classifier = !knn === {} ? knn : KNN.create();
     setClassifier(classifier);
-    const net = await mobilenet.load();
+    const net = !netState === {} ? netState : await mobilenet.load();
     setNet(net);
     const stream = await window.navigator.mediaDevices.getUserMedia({ video });
     video.current.srcObject = stream;
 
-    setInterval(async() => {
+    setFeedbackLoop(setInterval(async() => {
       const image = tf.browser.fromPixels(video.current);
       const logits = net.infer(image, 'conv_preds');
-      classifier.addExample(logits, 0);
+      // classifier.addExample(logits, 0);
       const result = await classifier.predictClass(logits);
       setFeedback(result.label);
       logits.dispose();
       image.dispose();
-    }, 500);
+    }, 500));
 
     setTimeout(() => train('initial'), 10000);
-
   }, []);
 
   const train = name => {
@@ -49,7 +51,7 @@ export default function TfCalibrater() {
   };
 
   const handleCalibrate = ({ target }) => {
-   setCalibratedPositions(state => ([...state, target.name]));
+    setCalibratedPositions(state => ([...state, target.name]));
     setVisibility(true);
     const training = setInterval(() => {
       train(target.name);
@@ -66,6 +68,7 @@ export default function TfCalibrater() {
       dispatch(setNetState(net));
       dispatch(setClassifierState(classifier));
       alert('calibration model has been set');
+      clearInterval(feedbackLoop);
     } else {
       // make message more indicative of which calibrations are needed
       alert('calibration incomplete');
