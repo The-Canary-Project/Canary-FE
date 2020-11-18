@@ -31,3 +31,12 @@ export const postLogin = async(user) => {
 
   return json;
 };
+
+export const getVerify = async () => {
+  const res = await fetch(`${DEV_URL}/api/v1/auth/verify`);
+
+  const json = await res.json();
+  if (!res.ok) throw ('Something bad happened');
+
+  return json;
+};

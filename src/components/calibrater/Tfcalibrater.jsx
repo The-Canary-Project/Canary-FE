@@ -78,12 +78,13 @@ export default function TfCalibrater() {
   return (
     <>
       <div className={styles.upperCalibration}>
-        <img 
-          src="https://thumbs.gfycat.com/CoarseActiveGibbon-small.gif" 
-          alt="timer" 
-          className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
+        
         <div className={styles.parent}>
           <div className={styles.gridparent}>
+          <img 
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif" 
+          alt="timer" 
+          className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
             <div className = {`${styles.topleftbox} ${feedback === 'a' && styles.feedback}`}>A</div>
             <div className = {`${styles.toprightbox} ${feedback === 'b' && styles.feedback}`}>B</div>
             <div className = {`${styles.bottomleftbox} ${feedback === 'c' && styles.feedback}`}>C</div>
