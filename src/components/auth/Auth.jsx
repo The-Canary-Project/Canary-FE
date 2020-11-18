@@ -12,7 +12,9 @@ export const Auth = () => {
 
   return (
     <section className={styles.authPage}>
-      <h1>CANARY</h1>
+      <div className={styles.authLargeIcon}>
+        <img src="src/assets/canary-blk-blue-w-txt.png" alt="blue canary logo" />
+      </div>
       <div className={styles.authContainer}>
         {
           displaySignUp ? <SignUp /> : <Login />
