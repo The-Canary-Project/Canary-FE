@@ -5,7 +5,7 @@ import styles from '../pages/TeacherDashboard.css'
 const PromptItem = ({ prompt, handleClick }) => {
   return (
     <div className={styles.promptItem}>
-      <p>Question: {prompt.text}</p>
+      <p>{prompt.text}</p>
       <button onClick={handleClick} value={JSON.stringify(prompt)}>Ask Question</button>
     </div>
   );
