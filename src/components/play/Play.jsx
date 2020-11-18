@@ -48,7 +48,7 @@ export const Play = () => {
   return (
     <div className={styles.play}>
       <Timer timer={timer} handleTimer={setTimer} />
-      <h3>{question.text}</h3>
+      <h3>question: {question.text}</h3>
       {questionAssets.answerElements}
       {result}
       <div className={styles.parent}>
