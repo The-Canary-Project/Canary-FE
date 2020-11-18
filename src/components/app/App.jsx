@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { SocketProvider } from '../../provider/socketProvider';
-import { AuthProvider } from '../../provider/AuthProvider';
+
 import { Auth } from '../auth/Auth';
 import store from '../../store';
 import { AboutUs } from '../about-us/AboutUs';
@@ -17,7 +17,7 @@ import TeacherDashboard from '../pages/TeacherDashboard';
 export default function App() {
   return (
     <Provider store={store}>
-      <AuthProvider>
+   
         <SocketProvider>
           <Router>
             <Route
@@ -44,7 +44,7 @@ export default function App() {
             </Switch>
           </Router>
         </SocketProvider>
-      </AuthProvider>
+  
     </Provider>
   );
 }

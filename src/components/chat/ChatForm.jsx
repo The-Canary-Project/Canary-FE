@@ -1,10 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useSocket } from '../../provider/socketProvider';
 
 function ChatForm() {
   const [message, setMessage] = useState('');
-  const user = localStorage.getItem('userName');
+  const user = useSelector(state => state.userName);
   const socket = useSocket();
 
   const handleSubmit = (event) => {

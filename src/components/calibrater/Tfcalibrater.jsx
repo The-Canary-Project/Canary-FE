@@ -82,7 +82,7 @@ export default function TfCalibrater() {
         <div className={styles.parent}>
           <div className={styles.gridparent}>
           <img 
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif" 
+          src="https://media.giphy.com/media/L05HgB2h6qICDs5Sms/giphy.gif" 
           alt="timer" 
           className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
             <div className = {`${styles.topleftbox} ${feedback === 'a' && styles.feedback}`}>A</div>

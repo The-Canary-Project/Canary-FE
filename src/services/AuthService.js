@@ -33,10 +33,14 @@ export const postLogin = async(user) => {
 };
 
 export const getVerify = async () => {
-  const res = await fetch(`${DEV_URL}/api/v1/auth/verify`);
+  const res = await fetch(`${DEV_URL}/api/v1/auth/verify`,
+  {
+    credentials: 'include'
+  });
 
   const json = await res.json();
-  if (!res.ok) throw ('Something bad happened');
-
+ 
+  if (!res.ok) return (res);
+  
   return json;
 };
