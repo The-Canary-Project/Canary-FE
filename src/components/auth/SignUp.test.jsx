@@ -7,6 +7,13 @@ import store from '../../store';
 import { Provider } from 'react-redux';
 
 jest.mock('../../services/AuthService.js');
+const mockHistory = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useHistory: () => ({
+    push: mockHistory,
+  }),
+}));
 
 describe('Signup Component', () => {
   it('signs up a new user', async() => {
