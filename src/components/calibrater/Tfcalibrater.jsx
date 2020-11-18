@@ -32,7 +32,7 @@ export default function TfCalibrater() {
     setFeedbackLoop(setInterval(async() => {
       const image = tf.browser.fromPixels(video.current);
       const logits = net.infer(image, 'conv_preds');
-      classifier.addExample(logits, 0);
+      // classifier.addExample(logits, 0);
       const result = await classifier.predictClass(logits);
       setFeedback(result.label);
       logits.dispose();
@@ -51,7 +51,7 @@ export default function TfCalibrater() {
   };
 
   const handleCalibrate = ({ target }) => {
-   setCalibratedPositions(state => ([...state, target.name]));
+    setCalibratedPositions(state => ([...state, target.name]));
     setVisibility(true);
     const training = setInterval(() => {
       train(target.name);
