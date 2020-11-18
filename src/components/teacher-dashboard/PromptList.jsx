@@ -1,10 +1,10 @@
-import React from 'react'
-import PromptItem from './PromptItem'
+import React from 'react';
+import PromptItem from './PromptItem';
 
 const PromptList = ({ promptList, handleClick }) => {
   return promptList.map(prompt => (
-    <PromptItem prompt={prompt} handleClick={handleClick} />
-  ))
-}
+    <PromptItem key={prompt.id} prompt={prompt} handleClick={handleClick} />
+  ));
+};
 
-export default PromptList
+export default PromptList;

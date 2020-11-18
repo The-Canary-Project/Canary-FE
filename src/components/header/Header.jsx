@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import styles from './Header.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import styles from './Header.css';
 
 export default function Header() {
-  const userRole = useSelector(state => state.userRole)
+  const userRole = useSelector(state => state.userRole);
 
   return (
     <div className={styles.navContainer}>
@@ -15,5 +15,5 @@ export default function Header() {
         <li><Link to="/">Logout</Link></li>
       </nav>
     </div>
-  )
+  );
 }

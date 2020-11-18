@@ -51,7 +51,7 @@ export default function TfCalibrater() {
   };
 
   const handleCalibrate = ({ target }) => {
-   setCalibratedPositions(state => ([...state, target.name]));
+    setCalibratedPositions(state => ([...state, target.name]));
     setVisibility(true);
     const training = setInterval(() => {
       train(target.name);

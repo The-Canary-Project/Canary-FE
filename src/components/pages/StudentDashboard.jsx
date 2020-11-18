@@ -10,10 +10,9 @@ export default function StudentDashboard() {
   const [play, setPlay] = useState(false);
   const history = useHistory();
   useEffect(async() => {
-    const user = await getVerify()
+    const user = await getVerify();
 
-     if(!user.userName) return history.push('/');
-
+    if(!user.userName) return history.push('/');
   }, []);
 
   const togglePlay = () => {

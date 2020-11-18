@@ -3,10 +3,9 @@ import { getAllPrompts } from '../../services/PromptsService';
 import PromptList from '../teacher-dashboard/PromptList';
 import Chat from '../chat/Chat';
 import { useSocket } from '../../provider/socketProvider';
-import styles from './TeacherDashboard.css'
+import styles from './TeacherDashboard.css';
 import { getVerify } from '../../services/AuthService';
 import { useHistory } from 'react-router-dom';
-
 
 export default function TeacherDashboard() {
   const [prompts, setPrompts] = useState([]);
@@ -37,7 +36,11 @@ export default function TeacherDashboard() {
 
         <section className={styles.teacherDashboardSections}>
           <h2>Prompts List</h2>
-          <PromptList promptList={prompts} handleClick={handleClick} className={styles.promptsList} />
+          <PromptList 
+            promptList={prompts} 
+            handleClick={handleClick} 
+            className={styles.promptsList}
+          />
         </section>
       </div>
     </div>
