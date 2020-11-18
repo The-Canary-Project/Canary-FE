@@ -28,12 +28,9 @@ export const Play = () => {
     video.current.srcObject = stream;
     
     socket.on('RECEIVE_QUESTION', (data) => {
-      console.log('RECEIVE QUESTION', data);
-      //setQuestionArray(state => [...state, data])
       setComplete(false);
       setQuestion(data);
       setQuestionAssets(makeAnswers(data));
-      // eslint-disable-next-line max-len
       setTimer(data.timer ? data.timer : 30);
       setCountdown(setInterval(async() => {
         const image = tf.browser.fromPixels(video.current);
@@ -53,21 +50,16 @@ export const Play = () => {
     if(completed) {
       
       // Render a completed state
-      return <h1>Youre Done</h1>;
+      return <h1>Times Up!</h1>;
     } else {
       // Render a countdown
       return <span>Time Remaining: {seconds}</span>;
     }
   };
 
-  // if(!questionArray.length && isComplete) {
-  //initiate question
-  // }
-
   // evaluate game results here and update socket and state score
   if(isComplete) {
     clearInterval(countdown);
-    console.log(questionAssets);
     // update user score here
     (feedback === questionAssets.correctAnswer) ? 'bingo' : 'wrong';
     console.log('evaluate game');

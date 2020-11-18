@@ -7,6 +7,14 @@ import store from '../../store';
 import { Provider } from 'react-redux';
 
 jest.mock('../../services/AuthService.js');
+const mockHistory = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useHistory: () => ({
+    push: mockHistory,
+  }),
+}));
+
 
 describe('Login Component', () => {
   it('logs in a user', async() => {
