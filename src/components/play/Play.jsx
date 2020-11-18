@@ -29,11 +29,12 @@ export const Play = () => {
     
     socket.on('RECEIVE_QUESTION', (data) => {
       console.log('RECEIVE QUESTION', data);
+      //setQuestionArray(state => [...state, data])
+      setComplete(false);
       setQuestion(data);
       setQuestionAssets(makeAnswers(data));
       // eslint-disable-next-line max-len
       setTimer(data.timer ? data.timer : 30);
-      setComplete(false);
       setCountdown(setInterval(async() => {
         const image = tf.browser.fromPixels(video.current);
         const logits = net.infer(image, 'conv_preds');
@@ -59,6 +60,10 @@ export const Play = () => {
     }
   };
 
+  // if(!questionArray.length && isComplete) {
+  //initiate question
+  // }
+
   // evaluate game results here and update socket and state score
   if(isComplete) {
     clearInterval(countdown);
@@ -67,6 +72,7 @@ export const Play = () => {
     (feedback === questionAssets.correctAnswer) ? 'bingo' : 'wrong';
     console.log('evaluate game');
   }
+
   return (
     <div className={styles.play}>
       <Countdown 
