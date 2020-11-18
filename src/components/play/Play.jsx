@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import styles from './Play.css';
 import { feedbackElements } from '../../utils/styleContainers';
 import Timer from './Time';
-import { question1 } from './testQuestion';
 import { makeAnswers } from '../../utils/setPlay';
+import { useSocket } from '../../provider/socketProvider';
 
 export const Play = () => {
   const net = useSelector(state => state.net);
   const classifier = useSelector(state => state.classifier);
-  const [question, setQuestion] = useState(question1);
+  const [question, setQuestion] = useState({});
   const [questionAssets, setQuestionAssets] = useState({});
   const [feedback, setFeedback] = useState();
   const [result, setResult] = useState();
@@ -19,11 +19,19 @@ export const Play = () => {
   const dispatch = useDispatch();
 
   const video = useRef();
+  const socket = useSocket();
   
   useEffect(async() => {
     const stream = await window.navigator.mediaDevices.getUserMedia({ video });
     video.current.srcObject = stream;
-    // set incoming questions to question
+    
+    socket.on('RECEIVE_QUESTION', (data) => {
+      console.log('RECEIVE QUESTION', data);
+      setQuestion(data);
+      setTimer(data.timer);
+      return () => {socket.off('RECEIVE_QUESTION');};
+    });
+
     setQuestionAssets(makeAnswers(question));
 
     setCountdown(setInterval(async() => {

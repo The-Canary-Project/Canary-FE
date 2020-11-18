@@ -1,18 +1,18 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const PromptItem = ({ prompt, handleClick }) => {
   return (
     <div>
       <p>Question: {prompt.text}</p>
-      <button onClick={handleClick} value={prompt}>Ask Question</button>
+      <button onClick={handleClick} value={JSON.stringify(prompt)}>Ask Question</button>
     </div>
-  )
-}
+  );
+};
 
 PromptItem.propTypes = {
   prompt: PropTypes.object.isRequired,
   handleClick: PropTypes.func.isRequired
-}
+};
 
-export default PromptItem
+export default PromptItem;

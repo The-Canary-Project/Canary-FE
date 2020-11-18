@@ -7,24 +7,24 @@ import {
   setUserRoleReducer
 } from '../../actions/authActions';
 import styles from './AuthStyles.css';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-
-  const handleSubmit = async(event) => {
+  const history = useHistory();
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    
 
     const logIn = await postLogin({ userName, password });
     
     dispatch(setUserNameReducer(logIn.userName));
     dispatch(setUserRoleReducer(logIn.userRole));
 
-    window.location.href = `/${logIn.userRole}`;
-
-    localStorage.setItem('userName', `${logIn.userName}`);
-
+    history.push(`/${logIn.userRole}`);
+    
     setUserName('');
     setPassword('');
   };

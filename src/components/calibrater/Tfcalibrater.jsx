@@ -51,7 +51,7 @@ export default function TfCalibrater() {
   };
 
   const handleCalibrate = ({ target }) => {
-    setCalibratedPositions(state => ([...state, target.name]));
+   setCalibratedPositions(state => ([...state, target.name]));
     setVisibility(true);
     const training = setInterval(() => {
       train(target.name);
@@ -78,12 +78,13 @@ export default function TfCalibrater() {
   return (
     <>
       <div className={styles.upperCalibration}>
-        <img 
-          src="https://thumbs.gfycat.com/CoarseActiveGibbon-small.gif" 
-          alt="timer" 
-          className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
+        
         <div className={styles.parent}>
           <div className={styles.gridparent}>
+          <img 
+          src="https://media.giphy.com/media/L05HgB2h6qICDs5Sms/giphy.gif" 
+          alt="timer" 
+          className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
             <div className = {`${styles.topleftbox} ${feedback === 'a' && styles.feedback}`}>A</div>
             <div className = {`${styles.toprightbox} ${feedback === 'b' && styles.feedback}`}>B</div>
             <div className = {`${styles.bottomleftbox} ${feedback === 'c' && styles.feedback}`}>C</div>
