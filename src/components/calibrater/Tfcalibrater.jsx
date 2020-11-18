@@ -78,7 +78,6 @@ export default function TfCalibrater() {
   return (
     <>
       <div className={styles.upperCalibration}>
-        
         <div className={styles.parent}>
           <div className={styles.gridparent}>
           <img 

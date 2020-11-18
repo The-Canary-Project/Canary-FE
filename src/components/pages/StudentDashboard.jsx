@@ -19,10 +19,8 @@ export default function StudentDashboard() {
   const togglePlay = () => {
     play ? setPlay(false) : setPlay(true);
   };
-
   return (
     <div>
-      
       <h1>Student Dashboard</h1>
       {
         play ? <Play /> : <TfCalibrater /> 
