@@ -16,12 +16,14 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const logIn = await postLogin({ userName, password })
+    const logIn = await postLogin({ userName, password });
     
     dispatch(setUserNameReducer(logIn.userName));
     dispatch(setUserRoleReducer(logIn.userRole));
 
-    window.location.href=`/${logIn.userRole}`
+    window.location.href = `/${logIn.userRole}`;
+
+    localStorage.setItem('userName', `${logIn.userName}`);
 
     setUserName('');
     setPassword('');

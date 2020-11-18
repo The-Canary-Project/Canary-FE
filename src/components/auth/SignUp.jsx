@@ -16,16 +16,19 @@ const SignUp = () => {
   const [userRole, setUserRole] = useState('student');
   const dispatch = useDispatch();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
 
-    const signUp = await postSignUp({ userName, password, userRole })
+    const signUp = await postSignUp({ userName, password, userRole });
 
     // set global state here
     dispatch(setUserNameReducer(signUp.userName));
     dispatch(setUserRoleReducer(signUp.userRole));
 
-    window.location.href=`/${signUp.userRole}`
+    window.location.href = `/${signUp.userRole}`;
+
+    localStorage.setItem('userName', `${signUp.userName}`);
+
     setUserName('');
     setPassword('');
     setUserRole('student');
