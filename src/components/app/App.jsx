@@ -16,32 +16,34 @@ import TeacherDashboard from '../pages/TeacherDashboard';
 export default function App() {
   return (
     <Provider store={store}>
-      <SocketProvider>
-        <Router>
-          <Route
-            path="/(.+)"
-            component={Header}
-          />
-          <Switch>
+   
+        <SocketProvider>
+          <Router>
             <Route
-              exact path="/"
-              component={Auth}
+              path="/(.+)"
+              component={Header}
             />
-            <Route
-              exact path="/student"
-              component={StudentDashboard}
-            />
-            <Route
-              exact path="/teacher"
-              component={TeacherDashboard}
-            />
-            <Route
-              exact path="/about-us"
-              component={AboutUs}
-            />
-          </Switch>
-        </Router>
-      </SocketProvider>
+            <Switch>
+              <Route
+                exact path="/"
+                component={Auth}
+              />
+              <Route
+                exact path="/student"
+                component={StudentDashboard}
+              />
+              <Route
+                exact path="/teacher"
+                component={TeacherDashboard}
+              />
+              <Route
+                exact path="/about-us"
+                component={AboutUs}
+              />
+            </Switch>
+          </Router>
+        </SocketProvider>
+  
     </Provider>
   );
 }
