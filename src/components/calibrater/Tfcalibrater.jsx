@@ -3,40 +3,43 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as tf from '@tensorflow/tfjs';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as KNN from '@tensorflow-models/knn-classifier';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setClassifierState, setNetState } from '../../actions/studentActions';
 import styles from './TfCalibrater.css';
 
 export default function TfCalibrater() {
 
   const video = useRef();
-
+  
+  const knn = useSelector(state => state.classifier);
+  const netState = useSelector(state => state.net);
   const [classifier, setClassifier] = useState();
   const [net, setNet] = useState();
   const [feedback, setFeedback] = useState();
+  const [feedbackLoop, setFeedbackLoop] = useState();
   const [isVisible, setVisibility] = useState(false);
   const [calibratedPositions, setCalibratedPositions] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(async() => {
-    const classifier = KNN.create();
+    const classifier = !knn === {} ? knn : KNN.create();
     setClassifier(classifier);
-    const net = await mobilenet.load();
+    const net = !netState === {} ? netState : await mobilenet.load();
     setNet(net);
     const stream = await window.navigator.mediaDevices.getUserMedia({ video });
     video.current.srcObject = stream;
 
-    setInterval(async() => {
+    setFeedbackLoop(setInterval(async() => {
       const image = tf.browser.fromPixels(video.current);
       const logits = net.infer(image, 'conv_preds');
+      // classifier.addExample(logits, 0);
       const result = await classifier.predictClass(logits);
       setFeedback(result.label);
       logits.dispose();
       image.dispose();
-    }, 500);
+    }, 500));
 
     setTimeout(() => train('initial'), 10000);
-
   }, []);
 
   const train = name => {
@@ -65,6 +68,7 @@ export default function TfCalibrater() {
       dispatch(setNetState(net));
       dispatch(setClassifierState(classifier));
       alert('calibration model has been set');
+      clearInterval(feedbackLoop);
     } else {
       // make message more indicative of which calibrations are needed
       alert('calibration incomplete');
@@ -75,7 +79,7 @@ export default function TfCalibrater() {
     <>
       <div className={styles.upperCalibration}>
         <img 
-          src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/01/timer-progress-animated.gif?ssl=1" 
+          src="https://thumbs.gfycat.com/CoarseActiveGibbon-small.gif" 
           alt="timer" 
           className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
         <div className={styles.parent}>
@@ -88,7 +92,9 @@ export default function TfCalibrater() {
           <video ref={video} autoPlay></video>
         </div>
       </div>
+    
       <div className={styles.buttonParent}>
+        <p>Press the calibrate button and place your hand in the corresponding quadrant of the of the video. For best results, move your hand to different positions within the quadrant. A transparent green color will indicate that readings are being captured. After the timer finishes, repeat the process until you have calibrated all quadrants. Then press 'Accept Calibrate' to accept the calibration.</p>
         <div className={styles.calibrateButtons}>
           <button name="a" onClick={handleCalibrate}>Calibrate A</button>
           <button name="b" onClick={handleCalibrate}>Calibrate B</button>
