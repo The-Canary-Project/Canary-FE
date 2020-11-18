@@ -3,12 +3,13 @@ import { getAllPrompts } from '../../services/PromptsService';
 import PromptList from '../teacher-dashboard/PromptList';
 import Chat from '../chat/Chat';
 import { useSocket } from '../../provider/socketProvider';
+import styles from './TeacherDashboard.css'
 
 export default function TeacherDashboard() {
   const [prompts, setPrompts] = useState([]);
   const socket = useSocket();
 
-  useEffect(async() => {
+  useEffect(async () => {
     const APIPrompts = await getAllPrompts();
 
     setPrompts(APIPrompts);
@@ -20,12 +21,19 @@ export default function TeacherDashboard() {
   };
 
   return (
-    <div>
+    <div >
       <h1>Teacher Dashboard</h1>
-      <section>
-        <PromptList promptList={prompts} handleClick={handleClick} />
-      </section>
-      <Chat />
+      <div className={styles.teacherDashboard}>
+        <section className={styles.teacherDashboardSections}>
+          <h2>Chat</h2>
+          <Chat />
+        </section>
+
+        <section className={styles.teacherDashboardSections}>
+          <h2>Prompts List</h2>
+          <PromptList promptList={prompts} handleClick={handleClick} className={styles.promptsList} />
+        </section>
+      </div>
     </div>
   );
 }

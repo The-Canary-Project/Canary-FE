@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from '../pages/TeacherDashboard.css'
 
 const PromptItem = ({ prompt, handleClick }) => {
   return (
-    <div>
+    <div className={styles.promptItem}>
       <p>Question: {prompt.text}</p>
       <button onClick={handleClick} value={JSON.stringify(prompt)}>Ask Question</button>
     </div>
