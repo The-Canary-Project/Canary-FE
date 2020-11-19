@@ -30,16 +30,20 @@ export default function TfCalibrater({ togglePlay }) {
     video.current.srcObject = stream;
 
     setFeedbackLoop(setInterval(async() => {
+      if(classifier.getNumClasses()===0) return;
+
       const image = tf.browser.fromPixels(video.current);
       const logits = net.infer(image, 'conv_preds');
-      // classifier.addExample(logits, 0);
       const result = await classifier.predictClass(logits);
       setFeedback(result.label);
+
       logits.dispose();
       image.dispose();
     }, 500));
 
-    setTimeout(() => train('initial'), 10000);
+
+    
+    return clearInterval(feedbackLoop);
   }, []);
 
   const train = name => {
@@ -49,9 +53,11 @@ export default function TfCalibrater({ togglePlay }) {
     logits.dispose();
     image.dispose();
   };
-
+ 
+  
   const handleCalibrate = ({ target }) => {
-    setCalibratedPositions(state => ([...state, target.name]));
+
+   setCalibratedPositions(state => ([...state, target.name]));
     setVisibility(true);
     const training = setInterval(() => {
       train(target.name);
@@ -62,11 +68,12 @@ export default function TfCalibrater({ togglePlay }) {
       setVisibility(false);
     }, 4500);
   };
-
-  const calibrated = calibratedPositions.includes('a') 
-    & calibratedPositions.includes('b') 
-    & calibratedPositions.includes('c') 
+  const calibrated = calibratedPositions.includes('a')
+    & calibratedPositions.includes('b')
+    & calibratedPositions.includes('c')
     & calibratedPositions.includes('d');
+
+
 
   const handleAcceptFeedback = () => {
     if(calibrated) {
@@ -80,6 +87,7 @@ export default function TfCalibrater({ togglePlay }) {
       alert('calibration incomplete');
     }
   };
+
 
   return (
     <>
