@@ -1,0 +1,29 @@
+* {
+  --black: #000229; 
+  --white: #F4F4F8; 
+  --blue: #009FB7;
+  --yellow: #FFE045;  
+  --orange: #FE4A49;  
+  --grey: #E6E6EA;
+  font-family: sans-serif;
+}
+
+.me {
+  background-color: green;
+  text-align: end;
+}
+
+.classmate {
+  background-color: pink;
+}
+
+.chatInput {
+  display: flex;
+  justify-content: space-between;
+  margin: 2px 5px;
+
+  input {
+    border: 2px solid black;
+    width: 100%;
+  }
+}
