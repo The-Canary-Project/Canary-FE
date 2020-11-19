@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
 * {
   --black: #000229; 
   --white: #F4F4F8; 
@@ -5,27 +7,45 @@
   --yellow: #FFE045;  
   --orange: #FE4A49;  
   --grey: #E6E6EA;
-  font-family: sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 200;
 }
 
+
 .bioWrapper {
+  font-family: 'Quicksand', sans-serif;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.2rem;
-
+  
   section {
+    height: 350px;
     border: 2px solid black;
     border-radius: 2rem;
     padding: 2rem;
-    height: max-content;
   }
 
+  section:hover {
+    .bioImg {
+      border-color: #FE4A49;
+    }
+  }
   img {
     border-radius: 100%;
   }
+  a {
+    transform: .3s;
+  }
+  a:hover {
+    border-color: #FE4A49;
+  }
 }
+
 
 .bioImg {
   height: 100px;
   width: 100px;
+  border: solid var(--grey) 2px;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.468);
+  transition: .3s;
 }

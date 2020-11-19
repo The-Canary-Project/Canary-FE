@@ -1,7 +1,8 @@
-import React from 'react'
-import styles from './AboutUs.css'
-import linkedinIcon from '../../../public/assets/linkedin_icon.png'
-import githubIcon from '../../../public/assets/github_icon.png'
+/* eslint-disable max-len */
+import React from 'react';
+import styles from './AboutUs.css';
+import linkedinIcon from '../../../public/assets/linkedin_icon.png';
+import githubIcon from '../../../public/assets/github_icon.png';
 
 export const AboutUs = () => {
   return (
@@ -56,7 +57,7 @@ export const AboutUs = () => {
 
             <h4>Ben Waples</h4>
 
-            <p>I am a Full Stack JavaScript developer with experience in team development and leadership. I am driven to deliver high quality work with all things I do! I have 2 years experience with managing client relationships, creating and delivering high quality products, and exceeding goals/ expectations.</p>
+            <p>I am a Full Stack JavaScript developer with experience in team development and leadership. I am driven to deliver high quality work with all things I do! I have 2 years experience with managing client relationships, creating and delivering high quality products, and cross-team communication.</p>
 
             <a href="https://github.com/benwaples" target="_blank"><img src={githubIcon} alt="github icon" height="30px" width="30px" /></a>
             <a href="https://www.linkedin.com/in/benwaples/" target="_blank"><img src={linkedinIcon} alt="github icon" height="30px" width="30px" /></a>
@@ -64,5 +65,5 @@ export const AboutUs = () => {
         </div>
       </section>
     </section>
-  )
-}
+  );
+};
