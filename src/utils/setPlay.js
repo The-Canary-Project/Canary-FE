@@ -14,7 +14,7 @@ function multipleChoiceAssets(question) {
   const options = ['a', 'b', 'c', 'd'];
   const answerElements = question.answers.map((answer, i) => {
     return (
-      <div key={i}>
+      <div key={i} >
         <h3>{options[i]}</h3>
         <p>{answer.text}</p>
         {answer.imageUrl && 
