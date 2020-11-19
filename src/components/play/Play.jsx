@@ -16,7 +16,9 @@ export const Play = () => {
   const net = useSelector(state => state.net);
   const classifier = useSelector(state => state.classifier);
   const [question, setQuestion] = useState({});
-  const [questionAssets, setQuestionAssets] = useState({});
+  const [questionAssets, setQuestionAssets] = useState({ 
+    answerElements: ['', '', '', ''] 
+  });
   const [feedback, setFeedback] = useState();
   const [result, setResult] = useState();
   const [countdown, setCountdown] = useState();
@@ -36,6 +38,7 @@ export const Play = () => {
       clearInterval(countdown);
       setQuestion(data);
       setQuestionAssets(makeAnswers(data));
+      
       setTimer(data.timer ? data.timer : 30);
       setCountdown(setInterval(async() => {
         const image = tf.browser.fromPixels(video.current);
@@ -86,12 +89,22 @@ export const Play = () => {
       />
       <h3>question: {question.text}</h3>
       {result}
-      {questionAssets.answerElements}
+      {/* {questionAssets.answerElements} */}
       <div className={styles.parent}>
-        <div className={styles.gridparent}>
-          {feedbackElements(styles, feedback)}
+        <section>
+          {questionAssets.answerElements[1]}
+          {questionAssets.answerElements[3]}
+        </section>
+        <div className={styles.centerPlay}>
+          <div className={styles.gridparent}>
+            {feedbackElements(styles, feedback)}
+          </div>
+          <video ref={video} autoPlay></video>
         </div>
-        <video ref={video} autoPlay></video>
+        <section>
+          {questionAssets.answerElements[0]}
+          {questionAssets.answerElements[2]}
+        </section>
       </div>
     </div>
   );

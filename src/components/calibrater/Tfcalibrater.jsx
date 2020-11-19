@@ -5,6 +5,7 @@ import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as KNN from '@tensorflow-models/knn-classifier';
 import { useDispatch, useSelector } from 'react-redux';
 import { setClassifierState, setNetState } from '../../actions/studentActions';
+import { feedbackElements } from '../../utils/styleContainers';
 import styles from './TfCalibrater.css';
 
 export default function TfCalibrater() {
@@ -80,21 +81,18 @@ export default function TfCalibrater() {
       <div className={styles.upperCalibration}>
         <div className={styles.parent}>
           <div className={styles.gridparent}>
-          <img 
-          src="https://media.giphy.com/media/L05HgB2h6qICDs5Sms/giphy.gif" 
-          alt="timer" 
-          className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
-            <div className = {`${styles.topleftbox} ${feedback === 'a' && styles.feedback}`}>A</div>
-            <div className = {`${styles.toprightbox} ${feedback === 'b' && styles.feedback}`}>B</div>
-            <div className = {`${styles.bottomleftbox} ${feedback === 'c' && styles.feedback}`}>C</div>
-            <div className = {`${styles.bottomrightbox} ${feedback === 'd' && styles.feedback}`}>D</div>
+            <img 
+              src="https://media.giphy.com/media/L05HgB2h6qICDs5Sms/giphy.gif" 
+              alt="timer" 
+              className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
+            {feedbackElements(styles, feedback)}
           </div>
           <video ref={video} autoPlay></video>
         </div>
       </div>
     
       <div className={styles.buttonParent}>
-        <p>Press the calibrate button and place your hand in the corresponding quadrant of the of the video. For best results, move your hand to different positions within the quadrant. A transparent green color will indicate that readings are being captured. After the timer finishes, repeat the process until you have calibrated all quadrants. Then press 'Accept Calibrate' to accept the calibration.</p>
+        <p>Press the calibrate button and place your hand in the corresponding quadrant of the video. For best results, move your hand to different positions within the quadrant. A transparent green color will indicate that readings are being captured. After the timer finishes, repeat the process until you have calibrated all quadrants. Then press 'Accept Calibrate' to accept the calibration.</p>
         <div className={styles.calibrateButtons}>
           <button name="a" onClick={handleCalibrate}>Calibrate A</button>
           <button name="b" onClick={handleCalibrate}>Calibrate B</button>
