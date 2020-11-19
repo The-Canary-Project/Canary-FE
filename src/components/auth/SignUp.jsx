@@ -1,13 +1,11 @@
 import React from 'react';
-import { useState} from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postSignUp } from '../../services/AuthService';
 import {
   setUserNameReducer,
   setUserRoleReducer
 } from '../../actions/authActions';
-
-
 import styles from './AuthStyles.css';
 import { useHistory } from 'react-router-dom';
 

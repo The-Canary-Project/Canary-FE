@@ -50,8 +50,10 @@ export default function TfCalibrater() {
     logits.dispose();
     image.dispose();
   };
-
+ 
+  
   const handleCalibrate = ({ target }) => {
+
    setCalibratedPositions(state => ([...state, target.name]));
     setVisibility(true);
     const training = setInterval(() => {
@@ -63,9 +65,14 @@ export default function TfCalibrater() {
       setVisibility(false);
     }, 4500);
   };
+  const calibrated = calibratedPositions.includes('a')
+    & calibratedPositions.includes('b')
+    & calibratedPositions.includes('c')
+    & calibratedPositions.includes('d');
 
   const handleAcceptFeedback = () => {
-    if(calibratedPositions.length === 4) {
+    
+    if(calibrated) {
       dispatch(setNetState(net));
       dispatch(setClassifierState(classifier));
       alert('calibration model has been set');
@@ -75,6 +82,7 @@ export default function TfCalibrater() {
       alert('calibration incomplete');
     }
   };
+
 
   return (
     <>
@@ -100,9 +108,10 @@ export default function TfCalibrater() {
           <button name="d" onClick={handleCalibrate}>Calibrate D</button>
         </div>
         {
-          calibratedPositions.length === 4 && <button onClick={handleAcceptFeedback} >Accept Calibrate</button>
+          <button className={!calibrated && styles.notVisible} onClick={handleAcceptFeedback}>Accept Calibrate</button>
+          
         }
-      </div>
+    </div>
     </>
   );
 }
