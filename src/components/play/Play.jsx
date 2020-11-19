@@ -18,7 +18,9 @@ export const Play = () => {
   const net = useSelector(state => state.net);
   const classifier = useSelector(state => state.classifier);
   const [question, setQuestion] = useState({});
-  const [questionAssets, setQuestionAssets] = useState({ answerElements: ['', '', '', ''] });
+  const [questionAssets, setQuestionAssets] = useState({ 
+    answerElements: ['', '', '', ''] 
+  });
   const [feedback, setFeedback] = useState();
   const [result, setResult] = useState();
   const [countdown, setCountdown] = useState();
@@ -92,6 +94,10 @@ export const Play = () => {
         />
       </div>
       <h3>question: {question.text}</h3>
+<<<<<<< HEAD
+=======
+      {result}
+>>>>>>> 76d121e5f8418d173251006aba03a3c899613550
       {/* {questionAssets.answerElements} */}
       <div className={styles.parent}>
         <section>
