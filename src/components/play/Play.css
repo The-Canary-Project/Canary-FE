@@ -44,6 +44,7 @@
   justify-content: space-evenly;
   align-items: center;
 }
+
 .parent{
   display: flex;
   justify-content: space-evenly;
@@ -79,7 +80,6 @@
     border-radius: 10px;
   }
   }
-
 }
 
 .upperCalibration {
@@ -145,11 +145,10 @@
   flex-direction: column;
 }
 
-
 .upperDisplay {
   width: 100vw;
   display: grid;
-  grid-template-columns: 300px auto 300px;
+  grid-template-columns: 500px auto 500px;
   align-items: center;
   height: 150px;
 
