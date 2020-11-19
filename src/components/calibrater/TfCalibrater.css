@@ -1,8 +1,7 @@
-.topleftbox{
+.a{
   width: 320px;
   height: 240px;
   margin: auto;
-  
   border-right: 1px solid black;
   border-bottom: 1px solid black;
   color: yellow;
@@ -12,12 +11,10 @@
   text-align: center;
 }
 
-.toprightbox{
+.b{
   width: 320px;
   height: 240px;
   margin: auto;
-  
-  border-right: 1px solid black;
   border-bottom: 1px solid black;
   color: yellow;
   font-size: 20px;
@@ -25,26 +22,21 @@
   text-align: center;
 }
 
-.bottomleftbox{
+.c{
   width: 320px;
   height: 240px;
   margin: auto;
-  
   border-right: 1px solid black;
-  border-bottom: 1px solid black;
   color: yellow;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
 }
 
-.bottomrightbox{
+.d{
   width: 320px;
   height: 240px;
   margin: auto;
-  
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
   color: yellow;
   font-size: 20px;
   font-weight: bold;
@@ -59,8 +51,8 @@
 
   position: relative;
   video{
-    height: 480px;
-    width: 640px;
+    height: 482px;
+    width: 642px;
   }
   box-sizing: border-box;
 

@@ -5,6 +5,7 @@ import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as KNN from '@tensorflow-models/knn-classifier';
 import { useDispatch, useSelector } from 'react-redux';
 import { setClassifierState, setNetState } from '../../actions/studentActions';
+import { feedbackElements } from '../../utils/styleContainers';
 import styles from './TfCalibrater.css';
 
 export default function TfCalibrater() {
@@ -80,14 +81,11 @@ export default function TfCalibrater() {
       <div className={styles.upperCalibration}>
         <div className={styles.parent}>
           <div className={styles.gridparent}>
-          <img 
-          src="https://media.giphy.com/media/L05HgB2h6qICDs5Sms/giphy.gif" 
-          alt="timer" 
-          className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
-            <div className = {`${styles.topleftbox} ${feedback === 'a' && styles.feedback}`}>A</div>
-            <div className = {`${styles.toprightbox} ${feedback === 'b' && styles.feedback}`}>B</div>
-            <div className = {`${styles.bottomleftbox} ${feedback === 'c' && styles.feedback}`}>C</div>
-            <div className = {`${styles.bottomrightbox} ${feedback === 'd' && styles.feedback}`}>D</div>
+            <img 
+            src="https://media.giphy.com/media/L05HgB2h6qICDs5Sms/giphy.gif" 
+            alt="timer" 
+            className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
+            {feedbackElements(styles, feedback)}
           </div>
           <video ref={video} autoPlay></video>
         </div>
