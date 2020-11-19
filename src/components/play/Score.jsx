@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+
 export const Score = () => {
   const correctAnswers = useSelector(state => state.correctAnswers);
   const totalAnswers = useSelector(state => state.totalAnswers);

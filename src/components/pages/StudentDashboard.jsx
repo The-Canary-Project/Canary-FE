@@ -24,7 +24,6 @@ export default function StudentDashboard() {
       {
         play ? <Play /> : <TfCalibrater togglePlay={togglePlay} />
       }
-      <Chat />
     </div>
   );
 }

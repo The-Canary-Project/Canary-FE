@@ -9,18 +9,51 @@
 }
 
 .me {
-  background-color: green;
-  text-align: end;
+  background-color: var(--blue);
 }
 
 .classmate {
-  background-color: pink;
+  background-color: var(--grey);
+  text-align: start;
+  max-width: 300px;
+  position: relative;
+  margin: 15px;
+  padding: 5px;
+  border-radius: 5px;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.classmate::after {
+  /* Position content*/
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+
+  /* Place shape*/
+  left: -3px;
+  bottom: 4px;
+
+  width: 0;
+  height: 0;
+
+  /* Create shape using borders*/
+  border-top: -8px solid transparent;
+  border-right: 8px solid var(--grey);
+  border-bottom: 8px solid var(--grey);
+
+  transform: rotate(-45deg);
 }
 
 .chatInput {
   display: flex;
   justify-content: space-between;
   margin: 2px 5px;
+  position: sticky;
+  bottom: 0;
 
   input {
     border: 2px solid black;
