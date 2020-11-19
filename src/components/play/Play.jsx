@@ -66,7 +66,7 @@ export const Play = () => {
       return <Results displayResults={displayResults} />;
     } else {
       // Render a countdown
-      return <h2>Time Remaining: {seconds}</h2>;
+      return <h2 className={styles.timeRemaining}>Time Remaining: {seconds}</h2>;
     }
   };
 
