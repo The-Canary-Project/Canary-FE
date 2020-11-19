@@ -68,6 +68,7 @@
     font-weight: 600;
   }
 }
+
 .parent{
   display: flex;
   justify-content: space-evenly;
@@ -103,7 +104,6 @@
     border-radius: 10px;
   }
   }
-
 }
 
 .upperCalibration {
@@ -166,14 +166,12 @@
   overflow: scroll;
   display: flex;
   flex-direction: column;
-  
 }
 
-
 .upperDisplay {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 500px auto 500px;
   align-items: center;
   height: 150px;
 
@@ -186,4 +184,8 @@
   width: 100%;
   height: 500px;
 
+}
+
+.timeRemaining {
+  margin: auto;
 }
