@@ -30,7 +30,7 @@ export default function TfCalibrater({ togglePlay }) {
     video.current.srcObject = stream;
 
     setFeedbackLoop(setInterval(async() => {
-      if(classifier.getNumClasses()===0) return;
+      if(classifier.getNumClasses() === 0) return;
 
       const image = tf.browser.fromPixels(video.current);
       const logits = net.infer(image, 'conv_preds');
@@ -41,8 +41,6 @@ export default function TfCalibrater({ togglePlay }) {
       image.dispose();
     }, 500));
 
-
-    
     return clearInterval(feedbackLoop);
   }, []);
 
@@ -54,9 +52,7 @@ export default function TfCalibrater({ togglePlay }) {
     image.dispose();
   };
  
-  
   const handleCalibrate = ({ target }) => {
-
    setCalibratedPositions(state => ([...state, target.name]));
     setVisibility(true);
     const training = setInterval(() => {
@@ -73,8 +69,6 @@ export default function TfCalibrater({ togglePlay }) {
     & calibratedPositions.includes('c')
     & calibratedPositions.includes('d');
 
-
-
   const handleAcceptFeedback = () => {
     if(calibrated) {
       dispatch(setNetState(net));
@@ -87,7 +81,6 @@ export default function TfCalibrater({ togglePlay }) {
       alert('calibration incomplete');
     }
   };
-
 
   return (
     <>
