@@ -18,6 +18,7 @@ nav {
   align-items: center;
   background-color: black;
   box-shadow: 0 2px 5px -2px var(--black);
+  list-style: none;
 
   img {
     height: 100px;

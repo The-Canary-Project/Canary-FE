@@ -8,10 +8,10 @@ import { useHistory } from 'react-router-dom';
 export default function StudentDashboard() {
   const [play, setPlay] = useState(false);
   const history = useHistory();
-  useEffect(async () => {
+  useEffect(async() => {
     const user = await getVerify();
 
-    if (!user.userName) return history.push('/');
+    if(!user.userName) return history.push('/');
   }, []);
 
   const togglePlay = () => {
@@ -24,6 +24,7 @@ export default function StudentDashboard() {
       {
         play ? <Play /> : <TfCalibrater />
       }
+      {/* <Play /> */}
       <button onClick={togglePlay}>Play</button>
       <Chat />
     </div>

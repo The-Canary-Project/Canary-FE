@@ -82,9 +82,9 @@ export default function TfCalibrater() {
         <div className={styles.parent}>
           <div className={styles.gridparent}>
             <img 
-            src="https://media.giphy.com/media/L05HgB2h6qICDs5Sms/giphy.gif" 
-            alt="timer" 
-            className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
+              src="https://media.giphy.com/media/L05HgB2h6qICDs5Sms/giphy.gif" 
+              alt="timer" 
+              className={isVisible ? `${styles.visible}` : `${styles.notVisible}`} />
             {feedbackElements(styles, feedback)}
           </div>
           <video ref={video} autoPlay></video>

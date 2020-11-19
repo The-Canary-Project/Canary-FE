@@ -6,7 +6,7 @@ export default function Chat() {
   return (
     <div>
       <ChatList />
-      <ChatForm/>
+      <ChatForm />
     </div>
   );
 }

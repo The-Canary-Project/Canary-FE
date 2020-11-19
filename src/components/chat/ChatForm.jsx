@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSocket } from '../../provider/socketProvider';
-import styles from './Chat.css'
+import styles from './Chat.css';
 
 function ChatForm() {
   const [message, setMessage] = useState('');
@@ -12,7 +12,7 @@ function ChatForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (message === '') return;
+    if(message === '') return;
 
     socket.emit('SEND_MESSAGE', {
       author: user,
