@@ -71,6 +71,7 @@
   -moz-transform:rotateY(180deg);
 
   div {
+    min-width: 40px;
     padding: 8px;
     width: fit-content;
     text-align: center;
