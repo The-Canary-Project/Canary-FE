@@ -72,6 +72,12 @@ export const Play = () => {
     if(feedback === questionAssets.correctAnswer) {
       dispatch(setCorrectAnswers());
       setResult('bingo'); 
+    } else if(question.type === 'trueFalse' & questionAssets.correctAnswer === 'a' & feedback === 'a' || 'c') {
+      dispatch(setCorrectAnswers());
+      setResult('bingo'); 
+    } else if(question.type === 'trueFalse' & questionAssets.correctAnswer === 'b' & feedback === 'b' || 'd') {
+      dispatch(setCorrectAnswers());
+      setResult('bingo');
     } else {
       setResult('wrong');
     }
