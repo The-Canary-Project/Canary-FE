@@ -10,7 +10,7 @@ export const postSignUp = async(user) => {
   });
 
   const json = await res.json();
-  if(!res.ok) throw ('Failed to Sign Up');
+  if(!res.ok) alert('Invalid username/password');
 
   return json;
 };
@@ -27,7 +27,7 @@ export const postLogin = async(user) => {
 
   const json = await res.json();
 
-  if(!res.ok) throw ('Log In Failed');
+  if(!res.ok) alert('Invalid username/password');
 
   return json;
 };
