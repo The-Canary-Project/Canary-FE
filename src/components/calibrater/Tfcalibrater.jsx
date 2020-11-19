@@ -92,7 +92,7 @@ export default function TfCalibrater() {
       </div>
     
       <div className={styles.buttonParent}>
-        <p>Press the calibrate button and place your hand in the corresponding quadrant of the of the video. For best results, move your hand to different positions within the quadrant. A transparent green color will indicate that readings are being captured. After the timer finishes, repeat the process until you have calibrated all quadrants. Then press 'Accept Calibrate' to accept the calibration.</p>
+        <p>Press the calibrate button and place your hand in the corresponding quadrant of the video. For best results, move your hand to different positions within the quadrant. A transparent green color will indicate that readings are being captured. After the timer finishes, repeat the process until you have calibrated all quadrants. Then press 'Accept Calibrate' to accept the calibration.</p>
         <div className={styles.calibrateButtons}>
           <button name="a" onClick={handleCalibrate}>Calibrate A</button>
           <button name="b" onClick={handleCalibrate}>Calibrate B</button>
