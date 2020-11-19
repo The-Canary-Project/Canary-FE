@@ -10,7 +10,7 @@ function ChatList() {
 
   useEffect(() => {
     socket.on('RECEIVE_MESSAGE', (data) => {
-      
+
       dispatch(setChatItem(
         { author: data.author, message: data.message }
       ));
@@ -20,11 +20,11 @@ function ChatList() {
       socket.off('RECEIVE_MESSAGE');
     };
   }, []);
-  
+
   const messageArray = useSelector(state => state.chatItems);
 
   const messageElements = messageArray.map((message, i) => {
-    return <ChatItem message={message} key={i}/>;
+    return <ChatItem message={message} key={i} />;
   });
 
   return (

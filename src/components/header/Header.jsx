@@ -12,8 +12,9 @@ export default function Header() {
         <li>
           <Link to={`/${userRole}`}>
             <img 
-              src="src/assets/canary-blk-blue-no-txt.png"
-              alt="canary black and blue logo" />
+              src="src/assets/canary-blk-blue-no-txt.png" 
+              alt="canary black and blue logo" 
+            />
           </Link>
         </li>
         <li><Link to={`/${userRole}`}>Dashboard</Link></li>

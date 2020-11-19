@@ -6,6 +6,11 @@ import { feedbackElements } from '../../utils/styleContainers';
 import Countdown from 'react-countdown';
 import { makeAnswers } from '../../utils/setPlay';
 import { useSocket } from '../../provider/socketProvider';
+import { 
+  setCorrectAnswers, 
+  setTotalAnswers 
+} from '../../actions/studentActions';
+import { Score } from './Score';
 
 export const Play = () => {
   const net = useSelector(state => state.net);
@@ -15,7 +20,7 @@ export const Play = () => {
   const [feedback, setFeedback] = useState();
   const [result, setResult] = useState();
   const [countdown, setCountdown] = useState();
-  const [timer, setTimer] = useState(30);
+  const [timer, setTimer] = useState(100);
   const [isComplete, setComplete] = useState(false);
   const dispatch = useDispatch();
   const now = useMemo(() => Date.now(), [question]);
@@ -28,7 +33,7 @@ export const Play = () => {
     video.current.srcObject = stream;
     
     socket.on('RECEIVE_QUESTION', (data) => {
-      setComplete(false);
+      clearInterval(countdown);
       setQuestion(data);
       setQuestionAssets(makeAnswers(data));
       setTimer(data.timer ? data.timer : 30);
@@ -42,7 +47,6 @@ export const Play = () => {
       }, 500));
       return () => {socket.off('RECEIVE_QUESTION');};
     });
-
 
   }, []);
 
@@ -61,12 +65,19 @@ export const Play = () => {
   if(isComplete) {
     clearInterval(countdown);
     // update user score here
-    (feedback === questionAssets.correctAnswer) ? 'bingo' : 'wrong';
-    console.log('evaluate game');
-  }
+    dispatch(setTotalAnswers());
+    if(feedback === questionAssets.correctAnswer) {
+      dispatch(setCorrectAnswers());
+      setResult('bingo'); 
+    } else {
+      setResult('wrong');
+    }
+    setComplete(false);
+  } 
 
   return (
     <div className={styles.play}>
+      <Score />
       <Countdown 
         key={question.text}
         date={now + (timer * 1000)}
@@ -74,8 +85,8 @@ export const Play = () => {
         onComplete={() => setComplete(true)}
       />
       <h3>question: {question.text}</h3>
-      {questionAssets.answerElements}
       {result}
+      {questionAssets.answerElements}
       <div className={styles.parent}>
         <div className={styles.gridparent}>
           {feedbackElements(styles, feedback)}

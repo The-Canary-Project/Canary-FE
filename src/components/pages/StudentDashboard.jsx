@@ -1,10 +1,9 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import TfCalibrater from '../calibrater/Tfcalibrater';
 import { Play } from '../play/Play';
 import Chat from '../chat/Chat';
 import { getVerify } from '../../services/AuthService';
 import { useHistory } from 'react-router-dom';
-
 
 export default function StudentDashboard() {
   const [play, setPlay] = useState(false);
@@ -22,7 +21,7 @@ export default function StudentDashboard() {
     <div>
       <h1>Student Dashboard</h1>
       {
-        play ? <Play /> : <TfCalibrater /> 
+        play ? <Play /> : <TfCalibrater />
       }
       <button onClick={togglePlay}>Play</button>
       <Chat />

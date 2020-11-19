@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSocket } from '../../provider/socketProvider';
+import styles from './Chat.css';
 
 function ChatForm() {
   const [message, setMessage] = useState('');
@@ -26,7 +27,7 @@ function ChatForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.chatInput}>
       <input
         type="text"
         value={message}

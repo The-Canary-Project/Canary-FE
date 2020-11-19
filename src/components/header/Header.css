@@ -8,16 +8,21 @@
   font-family: sans-serif;
 }
 
+.navContainer {
+  height: 100px;
+}
+
 nav {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
   background-color: black;
   box-shadow: 0 2px 5px -2px var(--black);
+  list-style: none;
 
   img {
-    height: 15vh;
-    width: 200px;
+    height: 100px;
+    width: auto;
   }
 }
 
