@@ -1,11 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux'
+import styles from './Chat.css'
 
 function ChatItem({ message, key }) {
-  return (
-    <div key={key}>
+  const userName = useSelector(state => state.userName)
+
+  const styledChat = (userName === message.author) ?
+    (<div key={key} className={styles.me}>
+      {message.message}
+    </div>) :
+    (<div key={key} className={styles.classmate}>
       {message.author}: {message.message}
-    </div>
+    </div>)
+
+  return (
+    <section>
+      {styledChat}
+    </section>
   );
 }
 
