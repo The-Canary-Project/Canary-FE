@@ -11,6 +11,9 @@ import {
   setTotalAnswers 
 } from '../../actions/studentActions';
 import { Score } from './Score';
+import { loseMedia, winMedia } from './results/resultsMedia';
+import Results from './results/Results';
+import Chat from '../chat/Chat';
 
 export const Play = () => {
   const net = useSelector(state => state.net);
@@ -20,7 +23,7 @@ export const Play = () => {
     answerElements: ['', '', '', ''] 
   });
   const [feedback, setFeedback] = useState();
-  const [result, setResult] = useState();
+  const [displayResults, setDisplayResults] = useState(false);
   const [countdown, setCountdown] = useState();
   const [timer, setTimer] = useState(100);
   const [isComplete, setComplete] = useState(false);
@@ -35,11 +38,12 @@ export const Play = () => {
     video.current.srcObject = stream;
     
     socket.on('RECEIVE_QUESTION', (data) => {
+      
       clearInterval(countdown);
+      setDisplayResults(false);
       setQuestion(data);
       setQuestionAssets(makeAnswers(data));
-      
-      setTimer(data.timer ? data.timer : 30);
+      setTimer(data.timer ? data.timer : 15);
       setCountdown(setInterval(async() => {
         const image = tf.browser.fromPixels(video.current);
         const logits = net.infer(image, 'conv_preds');
@@ -51,45 +55,49 @@ export const Play = () => {
       return () => {socket.off('RECEIVE_QUESTION');};
     });
 
+    return clearInterval(countdown);
   }, []);
 
   const renderer = ({ seconds, completed }) => {
     if(completed) {
       
       // Render a completed state
-      return <h1>Times Up!</h1>;
+      return <Results displayResults={displayResults} />;
     } else {
       // Render a countdown
-      return <span>Time Remaining: {seconds}</span>;
+      return <h2>Time Remaining: {seconds}</h2>;
     }
   };
 
   // evaluate game results here and update socket and state score
   if(isComplete) {
     clearInterval(countdown);
-    // update user score here
+    
     dispatch(setTotalAnswers());
     if(feedback === questionAssets.correctAnswer) {
       dispatch(setCorrectAnswers());
-      setResult('bingo'); 
+      setDisplayResults(winMedia);
     } else {
-      setResult('wrong');
+      setDisplayResults(loseMedia);
     }
     setComplete(false);
   } 
 
   return (
     <div className={styles.play}>
-      <Score />
-      <Countdown 
-        key={question.text}
-        date={now + (timer * 1000)}
-        renderer={renderer}
-        onComplete={() => setComplete(true)}
-      />
+      <div className={styles.upperDisplay}>
+        <div className={styles.chatContainer}>
+          <Chat />
+        </div>
+        <Countdown 
+          key={question.text}
+          date={now + (timer * 1000)}
+          renderer={renderer}
+          onComplete={() => setComplete(true)}
+        />
+        <Score />
+      </div>
       <h3>question: {question.text}</h3>
-      {result}
-      {/* {questionAssets.answerElements} */}
       <div className={styles.parent}>
         <section>
           {questionAssets.answerElements[1]}
