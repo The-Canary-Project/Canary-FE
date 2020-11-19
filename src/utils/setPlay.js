@@ -16,7 +16,7 @@ function multipleChoiceAssets(question) {
     return (
       <div key={i}>
         <h3>{options[i]}</h3>
-        <p>answer: {answer.text}</p>
+        <p>{answer.text}</p>
         {answer.imageUrl && 
         <img src={answer.imageUrl} alt={answer.text}/>} 
       </div>

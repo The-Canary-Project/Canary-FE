@@ -21,9 +21,10 @@ export default function StudentDashboard() {
   return (
     <div>
       <h1>Student Dashboard</h1>
-      {
+      {/* {
         play ? <Play /> : <TfCalibrater /> 
-      }
+      } */}
+      <Play />
       <button onClick={togglePlay}>Play</button>
       <Chat />
     </div>
