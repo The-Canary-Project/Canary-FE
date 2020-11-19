@@ -12,6 +12,8 @@ export default function StudentDashboard() {
     const user = await getVerify();
 
     if(!user.userName) return history.push('/');
+    if(user.userRole === 'teacher') return history.push('/teacher');
+    
   }, []);
 
   const togglePlay = () => {

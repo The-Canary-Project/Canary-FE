@@ -6,6 +6,11 @@
   opacity: 0.5;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
+  color: yellow;
+  opacity: 0.75;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .b{
@@ -16,6 +21,11 @@
   opacity: 0.5;
   border-left: 1px solid black;
   border-bottom: 1px solid black;
+  color: yellow;
+  opacity: 0.75;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .c{
@@ -26,6 +36,11 @@
   opacity: 0.5;
   border-right: 1px solid black;
   border-top: 1px solid black;
+  color: yellow;
+  opacity: 0.75;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .d{
@@ -36,6 +51,11 @@
   opacity: 0.5;
   border-left: 1px solid black;
   border-top: 1px solid black;
+  color: yellow;
+  opacity: 0.75;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .play {
@@ -43,6 +63,10 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+
+  b {
+    font-weight: 600;
+  }
 }
 
 .parent{
@@ -108,8 +132,7 @@
   -moz-transform:rotateY(180deg); /* Firefox */
 }
 .feedback{
-  background-color: green;
-  opacity: 0.5;
+  background-color: rgba(0, 128, 0, 0.529);
 }
 
 .centerPlay {
