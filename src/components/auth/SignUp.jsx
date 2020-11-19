@@ -25,6 +25,7 @@ const SignUp = () => {
     dispatch(setUserNameReducer(signUp.userName));
     dispatch(setUserRoleReducer(signUp.userRole));
 
+    if(signUp.status === 500) return history.push('/');
     history.push(`/${signUp.userRole}`);
     
     setUserName('');

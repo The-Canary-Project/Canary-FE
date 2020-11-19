@@ -19,10 +19,11 @@ const Login = () => {
     
 
     const logIn = await postLogin({ userName, password });
-    
+    console.log(logIn);
     dispatch(setUserNameReducer(logIn.userName));
     dispatch(setUserRoleReducer(logIn.userRole));
 
+    if(logIn.status === 500) return history.push('/');
     history.push(`/${logIn.userRole}`);
     
     setUserName('');
