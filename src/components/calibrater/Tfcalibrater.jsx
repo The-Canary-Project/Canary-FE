@@ -9,9 +9,7 @@ import { feedbackElements } from '../../utils/styleContainers';
 import styles from './TfCalibrater.css';
 
 export default function TfCalibrater() {
-
   const video = useRef();
-  
   const knn = useSelector(state => state.classifier);
   const netState = useSelector(state => state.net);
   const [classifier, setClassifier] = useState();

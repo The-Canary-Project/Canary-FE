@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Login from './Login';
 import SignUp from './SignUp';
 import styles from './AuthStyles.css';
-import largeLogo from '../../../public/assets/canary-blk-blue-w-txt.png'
+import largeLogo from '../../../public/assets/canary-blk-blue-w-txt.png';
 
 export const Auth = () => {
   const [displaySignUp, setDisplaySignUp] = useState(false);
@@ -22,7 +22,9 @@ export const Auth = () => {
         }
 
         <section className={styles.authToggleButtonContainer} >
-          <p onClick={toggle}>{displaySignUp ? 'Existing user?' : 'New user?'}</p>
+          <p onClick={toggle}>
+            {displaySignUp ? 'Existing user?' : 'New user?'}
+          </p>
         </section>
       </div>
     </section>
