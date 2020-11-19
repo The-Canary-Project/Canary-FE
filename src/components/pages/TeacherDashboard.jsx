@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAllPrompts } from '../../services/PromptsService';
-import PromptList from '../teacher-dashboard/PromptList';
+import PromptList from '../prompts/PromptList';
 import Chat from '../chat/Chat';
 import { useSocket } from '../../provider/socketProvider';
 import styles from './TeacherDashboard.css';
