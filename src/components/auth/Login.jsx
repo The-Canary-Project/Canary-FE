@@ -2,25 +2,29 @@ import React from 'react';
 import { useState } from 'react';
 import { postLogin } from '../../services/AuthService';
 import { useDispatch } from 'react-redux';
-import { 
-  setUserNameReducer, 
-  setUserRoleReducer 
+import {
+  setUserNameReducer,
+  setUserRoleReducer
 } from '../../actions/authActions';
 import styles from './AuthStyles.css';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const handleSubmit = async(event) => {
     event.preventDefault();
+    
 
-    await postLogin({ userName, password })
-      .then(res => {
-        dispatch(setUserNameReducer(res.userName));
-        dispatch(setUserRoleReducer(res.userRole));
-      });
+    const logIn = await postLogin({ userName, password });
+    
+    dispatch(setUserNameReducer(logIn.userName));
+    dispatch(setUserRoleReducer(logIn.userRole));
+
+    history.push(`/${logIn.userRole}`);
+    
     setUserName('');
     setPassword('');
   };

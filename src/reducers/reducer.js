@@ -19,6 +19,7 @@ const initialState = {
   userRole: '',
   classifier: {},
   net: {},
+  correctAnswers: 0,
   totalAnswers: 0,
   classroom: null,
   chatItems: [],
@@ -27,7 +28,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  switch (action.type) {
+  switch(action.type) {
     // SET USERNAME AND ROLE
     case SET_USERNAME:
       return { ...state, userName: action.payload };

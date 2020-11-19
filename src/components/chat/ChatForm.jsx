@@ -1,21 +1,24 @@
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setChatItem } from '../../actions/classroomActions';
+import { useSelector } from 'react-redux';
+import { useSocket } from '../../provider/socketProvider';
+import styles from './Chat.css';
 
 function ChatForm() {
   const [message, setMessage] = useState('');
-  const dispatch = useDispatch();
   const user = useSelector(state => state.userName);
+  const socket = useSocket();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (message === '') return;
+    if(message === '') return;
 
-    dispatch(setChatItem(
-      { author: user, message }
-    ));
+    socket.emit('SEND_MESSAGE', {
+      author: user,
+      message
+    });
+
     setMessage('');
   };
 
@@ -24,7 +27,7 @@ function ChatForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.chatInput}>
       <input
         type="text"
         value={message}

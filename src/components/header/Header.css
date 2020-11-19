@@ -1,0 +1,39 @@
+* {
+  --black: #000229; 
+  --white: #F4F4F8; 
+  --blue: #009FB7;  
+  --yellow: #FFE045;  
+  --orange: #FE4A49;  
+  --grey: #E6E6EA;
+  font-family: sans-serif;
+}
+
+.navContainer {
+  height: 100px;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  background-color: black;
+  box-shadow: 0 2px 5px -2px var(--black);
+  list-style: none;
+
+  img {
+    height: 100px;
+    width: auto;
+  }
+}
+
+a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+a:hover {
+  border-bottom: var(--white) 2px solid;
+  transition: .1s;
+  font-size: 1.6rem;
+}

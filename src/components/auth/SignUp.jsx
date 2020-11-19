@@ -2,30 +2,31 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postSignUp } from '../../services/AuthService';
-import { 
-  setUserNameReducer, 
-  setUserRoleReducer 
+import {
+  setUserNameReducer,
+  setUserRoleReducer
 } from '../../actions/authActions';
-
-
 import styles from './AuthStyles.css';
+import { useHistory } from 'react-router-dom';
 
 const SignUp = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [userRole, setUserRole] = useState('student');
   const dispatch = useDispatch();
-
+  const history = useHistory();
 
   const handleSubmit = async(event) => {
     event.preventDefault();
 
-    await postSignUp({ userName, password, userRole })
+    const signUp = await postSignUp({ userName, password, userRole });
+
     // set global state here
-      .then(res => {
-        dispatch(setUserNameReducer(res.userName));
-        dispatch(setUserRoleReducer(res.userRole));
-      });
+    dispatch(setUserNameReducer(signUp.userName));
+    dispatch(setUserRoleReducer(signUp.userRole));
+
+    history.push(`/${signUp.userRole}`);
+    
     setUserName('');
     setPassword('');
     setUserRole('student');

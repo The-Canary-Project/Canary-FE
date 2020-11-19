@@ -1,4 +1,4 @@
-const DEV_URL = 'http://localhost:7890';
+const DEV_URL = process.env.SOCKET_URL;
 export const postSignUp = async(user) => {
   const res = await fetch(`${DEV_URL}/api/v1/auth/signup`, {
     method: 'POST',
@@ -29,5 +29,18 @@ export const postLogin = async(user) => {
 
   if(!res.ok) throw ('Log In Failed');
 
+  return json;
+};
+
+export const getVerify = async() => {
+  const res = await fetch(`${DEV_URL}/api/v1/auth/verify`,
+    {
+      credentials: 'include'
+    });
+
+  const json = await res.json();
+ 
+  if(!res.ok) return (res);
+  
   return json;
 };
