@@ -13,6 +13,7 @@ import {
 import { Score } from './Score';
 import { loseMedia, winMedia } from './results/resultsMedia';
 import Results from './results/Results';
+import Chat from '../chat/Chat';
 
 export const Play = () => {
   const net = useSelector(state => state.net);
@@ -22,7 +23,6 @@ export const Play = () => {
     answerElements: ['', '', '', ''] 
   });
   const [feedback, setFeedback] = useState();
-  const [result, setResult] = useState(false);
   const [displayResults, setDisplayResults] = useState(false);
   const [countdown, setCountdown] = useState();
   const [timer, setTimer] = useState(100);
@@ -55,6 +55,7 @@ export const Play = () => {
       return () => {socket.off('RECEIVE_QUESTION');};
     });
 
+    return clearInterval(countdown);
   }, []);
 
   const renderer = ({ seconds, completed }) => {
@@ -76,10 +77,8 @@ export const Play = () => {
     dispatch(setTotalAnswers());
     if(feedback === questionAssets.correctAnswer) {
       dispatch(setCorrectAnswers());
-      setResult(true); 
       setDisplayResults(winMedia);
     } else {
-      setResult(false);
       setDisplayResults(loseMedia);
     }
     setComplete(false);
@@ -88,6 +87,9 @@ export const Play = () => {
   return (
     <div className={styles.play}>
       <div className={styles.upperDisplay}>
+        <div className={styles.chatContainer}>
+          <Chat />
+        </div>
         <Countdown 
           key={question.text}
           date={now + (timer * 1000)}

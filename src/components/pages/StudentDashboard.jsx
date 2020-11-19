@@ -26,7 +26,6 @@ export default function StudentDashboard() {
       } */}
       <Play />
       <button onClick={togglePlay}>Play</button>
-      <Chat />
     </div>
   );
 }

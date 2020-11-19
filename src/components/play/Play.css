@@ -138,6 +138,13 @@
   }
 }
 
+.chatContainer {
+  height: 90%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
 
 .upperDisplay {
   width: 100%;

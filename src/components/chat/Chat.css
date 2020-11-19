@@ -21,6 +21,8 @@
   display: flex;
   justify-content: space-between;
   margin: 2px 5px;
+  position: sticky;
+  bottom: 0;
 
   input {
     border: 2px solid black;
