@@ -10,16 +10,50 @@
 
 .me {
   background-color: var(--blue);
+  text-align: end;
+  max-width: 90%;
+  position: relative;
+  margin: 15px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 60%;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.me::after {
+  /* Position content*/
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+
+  /* Place shape*/
+  right: -3px;
+  bottom: 4px;
+
+  width: 0;
+  height: 0;
+
+  /* Create shape using borders*/
+  border-top: -8px solid transparent;
+  border-right: 8px solid var(--blue);
+  border-bottom: 8px solid var(--blue);
+
+  transform: rotate(-45deg);
 }
 
 .classmate {
   background-color: var(--grey);
   text-align: start;
-  max-width: 300px;
+  max-width: 90%;
   position: relative;
   margin: 15px;
   padding: 5px;
   border-radius: 5px;
+  margin-right: 60%;
 
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -52,8 +86,7 @@
   display: flex;
   justify-content: space-between;
   margin: 2px 5px;
-  position: sticky;
-  bottom: 0;
+  align-items: flex-end;
 
   input {
     border: 2px solid black;

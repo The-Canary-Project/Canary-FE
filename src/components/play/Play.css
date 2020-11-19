@@ -143,14 +143,13 @@
   overflow: scroll;
   display: flex;
   flex-direction: column;
-  
 }
 
 
 .upperDisplay {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 300px auto 300px;
   align-items: center;
   height: 150px;
 
@@ -163,4 +162,8 @@
   width: 100%;
   height: 500px;
 
+}
+
+.timeRemaining {
+  margin: auto;
 }
