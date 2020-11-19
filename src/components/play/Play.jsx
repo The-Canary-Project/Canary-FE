@@ -11,8 +11,7 @@ import {
   setTotalAnswers 
 } from '../../actions/studentActions';
 import { Score } from './Score';
-import Win from './results/Win';
-import Lose from './results/Lose';
+import { loseMedia, winMedia } from './resultsMedia';
 
 export const Play = () => {
   const net = useSelector(state => state.net);
@@ -43,7 +42,7 @@ export const Play = () => {
       setDisplayResults(false);
       setQuestion(data);
       setQuestionAssets(makeAnswers(data));
-      setTimer(data.timer ? data.timer : 30);
+      setTimer(data.timer ? data.timer : 15);
       setCountdown(setInterval(async() => {
         const image = tf.browser.fromPixels(video.current);
         const logits = net.infer(image, 'conv_preds');
@@ -61,7 +60,7 @@ export const Play = () => {
     if(completed) {
       
       // Render a completed state
-      return <h2>Times Up!</h2>;
+      return <img src={displayResults} alt="results"/>;
     } else {
       // Render a countdown
       return <h2>Time Remaining: {seconds}</h2>;
@@ -77,10 +76,11 @@ export const Play = () => {
     if(feedback === questionAssets.correctAnswer) {
       dispatch(setCorrectAnswers());
       setResult(true); 
+      setDisplayResults(winMedia);
     } else {
       setResult(false);
+      setDisplayResults(loseMedia);
     }
-    setDisplayResults(true);
     setComplete(false);
   } 
 
@@ -88,7 +88,6 @@ export const Play = () => {
     <div className={styles.play}>
       <div className={styles.upperDisplay}>
         
-        {displayResults ? (result ? <Win /> : <Lose />) : <div className={styles.empty}></div>}
         <Countdown 
           key={question.text}
           date={now + (timer * 1000)}
