@@ -46,7 +46,7 @@ export const Play = () => {
 
   }, []);
 
-  const renderer = ({ hours, minutes, seconds, completed }) => {
+  const renderer = ({ seconds, completed }) => {
     if(completed) {
       
       // Render a completed state
