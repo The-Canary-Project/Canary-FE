@@ -139,8 +139,14 @@
 }
 
 
-.countDown {
-  
+.upperDisplay {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  .empty {
+    width: 200px;
+  }
 }
 
 .answers {

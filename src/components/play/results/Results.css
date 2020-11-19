@@ -1,3 +1,5 @@
 .result {
-  width: 200px;
+  max-width: 200px;
+  width: auto;
+  height: 100px;
 }

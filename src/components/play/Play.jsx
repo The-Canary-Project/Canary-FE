@@ -45,7 +45,6 @@ export const Play = () => {
       setQuestionAssets(makeAnswers(data));
       setTimer(data.timer ? data.timer : 30);
       setCountdown(setInterval(async() => {
-        console.log('evaluate');
         const image = tf.browser.fromPixels(video.current);
         const logits = net.infer(image, 'conv_preds');
         const result = await classifier.predictClass(logits);
@@ -87,15 +86,16 @@ export const Play = () => {
 
   return (
     <div className={styles.play}>
-      <Score />
-      {displayResults ? (result ? <Win /> : <Lose />) : ''}
-      <div className={styles.countDown}>
+      <div className={styles.upperDisplay}>
+        
+        {displayResults ? (result ? <Win /> : <Lose />) : <div className={styles.empty}></div>}
         <Countdown 
           key={question.text}
           date={now + (timer * 1000)}
           renderer={renderer}
           onComplete={() => setComplete(true)}
         />
+        <Score />
       </div>
       <h3>question: {question.text}</h3>
       <div className={styles.parent}>
