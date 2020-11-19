@@ -14,12 +14,12 @@ function multipleChoiceAssets(question) {
   const options = ['a', 'b', 'c', 'd'];
   const answerElements = question.answers.map((answer, i) => {
     return (
-      <div key={i} >
+      <>
         <h3>{options[i]}</h3>
         <p>{answer.text}</p>
         {answer.imageUrl && 
         <img src={answer.imageUrl} alt={answer.text}/>} 
-      </div>
+      </>
     );
   });
   // find the text of the correct answer
@@ -35,11 +35,11 @@ function multipleChoiceAssets(question) {
 function trueFalseAssets(question) {
   const answerElements = question.answers.map((answer, i) => {
     return (
-      <div key={i}>
+      <>
         <p>{answer.text}</p>
         {answer.imageUrl && 
         <img src={answer.imageUrl} alt={answer.text}/>} 
-      </div>
+      </>
     );
   });
   

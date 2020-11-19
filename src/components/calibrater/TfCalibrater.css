@@ -3,7 +3,7 @@
   height: 240px;
   margin: auto;
   border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #000000;
   color: yellow;
   opacity: 0.75;
   font-size: 20px;

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-constant-condition */
 import React, { useRef, useState, useEffect, useMemo } from 'react';
 import * as tf from '@tensorflow/tfjs';
@@ -79,19 +80,19 @@ export const Play = () => {
       dispatch(setCorrectAnswers());
       setDisplayResults(winMedia); 
       
-    } else if(
-      question.type === 'trueFalse' & 
-      questionAssets.correctAnswer === 'a' & 
-      feedback === 'a' || 'c') {
-      dispatch(setCorrectAnswers());
-      setDisplayResults(winMedia);
+      // } else if(
+      //   question.type === 'trueFalse' & 
+      //   questionAssets.correctAnswer === 'a' & 
+      //   feedback === 'a' || 'c') {
+      //   dispatch(setCorrectAnswers());
+      //   setDisplayResults(winMedia);
 
-    } else if(
-      question.type === 'trueFalse' & 
-      questionAssets.correctAnswer === 'b' & 
-      feedback === 'b' || 'd') {
-      dispatch(setCorrectAnswers());
-      setDisplayResults(winMedia);
+      // } else if(
+      //   question.type === 'trueFalse' & 
+      //   questionAssets.correctAnswer === 'b' & 
+      //   feedback === 'b' || 'd') {
+      //   dispatch(setCorrectAnswers());
+      //   setDisplayResults(winMedia);
 
     } else {
       setDisplayResults(loseMedia);
@@ -113,11 +114,11 @@ export const Play = () => {
         />
         <Score />
       </div>
-      <h3>question: {question.text}</h3>
+      <h3><b>Question:</b> {question.text}</h3>
       <div className={styles.parent}>
         <section>
-          {questionAssets.answerElements[1]}
-          {questionAssets.answerElements[3]}
+          <div className={feedback === 'b' && styles.feedback}>{questionAssets.answerElements[1]}</div>
+          <div className={feedback === 'd' && styles.feedback}>{questionAssets.answerElements[3]}</div>
         </section>
         <div className={styles.centerPlay}>
           <div className={styles.gridparent}>
@@ -126,8 +127,8 @@ export const Play = () => {
           <video ref={video} autoPlay></video>
         </div>
         <section>
-          {questionAssets.answerElements[0]}
-          {questionAssets.answerElements[2]}
+          <div className={feedback === 'a' && styles.feedback}>{questionAssets.answerElements[0]}</div>
+          <div className={feedback === 'c' && styles.feedback}>{questionAssets.answerElements[2]}</div>
         </section>
       </div>
     </div>

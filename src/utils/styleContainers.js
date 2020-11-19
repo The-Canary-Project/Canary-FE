@@ -11,3 +11,9 @@ export const feedbackElements = (styles, feedback) => {
     </div>;
   });
 };
+
+export const feedbackAnswerElements = (position, text, styles, feedback) => {
+  return (
+    <div className={feedback === position && styles.feedback}>{text}</div>
+  );
+};
