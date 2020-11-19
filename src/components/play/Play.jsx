@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import React, { useRef, useState, useEffect, useMemo } from 'react';
 import * as tf from '@tensorflow/tfjs';
 import { useSelector, useDispatch } from 'react-redux';
@@ -71,13 +72,27 @@ export const Play = () => {
 
   // evaluate game results here and update socket and state score
   if(isComplete) {
-    console.log(questionAssets);
     clearInterval(countdown);
     
     dispatch(setTotalAnswers());
     if(feedback === questionAssets.correctAnswer) {
       dispatch(setCorrectAnswers());
+      setDisplayResults(winMedia); 
+      
+    } else if(
+      question.type === 'trueFalse' & 
+      questionAssets.correctAnswer === 'a' & 
+      feedback === 'a' || 'c') {
+      dispatch(setCorrectAnswers());
       setDisplayResults(winMedia);
+
+    } else if(
+      question.type === 'trueFalse' & 
+      questionAssets.correctAnswer === 'b' & 
+      feedback === 'b' || 'd') {
+      dispatch(setCorrectAnswers());
+      setDisplayResults(winMedia);
+
     } else {
       setDisplayResults(loseMedia);
     }
