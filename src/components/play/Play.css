@@ -138,12 +138,9 @@
   }
 }
 
-.visible {
-  visibility: visible;
-}
 
-.notVisible {
-  visibility: hidden;
+.countDown {
+  
 }
 
 .answers {

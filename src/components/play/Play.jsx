@@ -11,6 +11,8 @@ import {
   setTotalAnswers 
 } from '../../actions/studentActions';
 import { Score } from './Score';
+import Win from './results/Win';
+import Lose from './results/Lose';
 
 export const Play = () => {
   const net = useSelector(state => state.net);
@@ -55,10 +57,10 @@ export const Play = () => {
     if(completed) {
       
       // Render a completed state
-      return <h1>Times Up!</h1>;
+      return <h2>Times Up!</h2>;
     } else {
       // Render a countdown
-      return <span>Time Remaining: {seconds}</span>;
+      return <h2>Time Remaining: {seconds}</h2>;
     }
   };
 
@@ -80,14 +82,16 @@ export const Play = () => {
   return (
     <div className={styles.play}>
       <Score />
-      <Countdown 
-        key={question.text}
-        date={now + (timer * 1000)}
-        renderer={renderer}
-        onComplete={() => setComplete(true)}
-      />
+      {result ? <Win /> : <Lose />}
+      <div className={styles.countDown}>
+        <Countdown 
+          key={question.text}
+          date={now + (timer * 1000)}
+          renderer={renderer}
+          onComplete={() => setComplete(true)}
+        />
+      </div>
       <h3>question: {question.text}</h3>
-      {result}
       {/* {questionAssets.answerElements} */}
       <div className={styles.parent}>
         <section>
