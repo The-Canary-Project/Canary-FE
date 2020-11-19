@@ -22,7 +22,8 @@ export const Play = () => {
     answerElements: ['', '', '', ''] 
   });
   const [feedback, setFeedback] = useState();
-  const [result, setResult] = useState();
+  const [result, setResult] = useState(false);
+  const [displayResults, setDisplayResults] = useState(false);
   const [countdown, setCountdown] = useState();
   const [timer, setTimer] = useState(100);
   const [isComplete, setComplete] = useState(false);
@@ -37,12 +38,14 @@ export const Play = () => {
     video.current.srcObject = stream;
     
     socket.on('RECEIVE_QUESTION', (data) => {
+      
       clearInterval(countdown);
+      setDisplayResults(false);
       setQuestion(data);
       setQuestionAssets(makeAnswers(data));
-      
       setTimer(data.timer ? data.timer : 30);
       setCountdown(setInterval(async() => {
+        console.log('evaluate');
         const image = tf.browser.fromPixels(video.current);
         const logits = net.infer(image, 'conv_preds');
         const result = await classifier.predictClass(logits);
@@ -70,21 +73,22 @@ export const Play = () => {
   if(isComplete) {
     console.log(questionAssets);
     clearInterval(countdown);
-    // update user score here
+    
     dispatch(setTotalAnswers());
     if(feedback === questionAssets.correctAnswer) {
       dispatch(setCorrectAnswers());
-      setResult('bingo'); 
+      setResult(true); 
     } else {
-      setResult('wrong');
+      setResult(false);
     }
+    setDisplayResults(true);
     setComplete(false);
   } 
 
   return (
     <div className={styles.play}>
       <Score />
-      {result ? <Win /> : <Lose />}
+      {displayResults ? (result ? <Win /> : <Lose />) : ''}
       <div className={styles.countDown}>
         <Countdown 
           key={question.text}
@@ -94,11 +98,6 @@ export const Play = () => {
         />
       </div>
       <h3>question: {question.text}</h3>
-<<<<<<< HEAD
-=======
-      {result}
->>>>>>> 76d121e5f8418d173251006aba03a3c899613550
-      {/* {questionAssets.answerElements} */}
       <div className={styles.parent}>
         <section>
           {questionAssets.answerElements[1]}
