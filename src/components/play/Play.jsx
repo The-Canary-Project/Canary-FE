@@ -71,7 +71,6 @@ export const Play = () => {
 
   // evaluate game results here and update socket and state score
   if(isComplete) {
-    console.log(questionAssets);
     clearInterval(countdown);
     
     dispatch(setTotalAnswers());

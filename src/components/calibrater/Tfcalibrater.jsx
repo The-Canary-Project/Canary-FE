@@ -8,7 +8,7 @@ import { setClassifierState, setNetState } from '../../actions/studentActions';
 import { feedbackElements } from '../../utils/styleContainers';
 import styles from './TfCalibrater.css';
 
-export default function TfCalibrater() {
+export default function TfCalibrater({ togglePlay }) {
   const video = useRef();
   const knn = useSelector(state => state.classifier);
   const netState = useSelector(state => state.net);
@@ -18,6 +18,7 @@ export default function TfCalibrater() {
   const [feedbackLoop, setFeedbackLoop] = useState();
   const [isVisible, setVisibility] = useState(false);
   const [calibratedPositions, setCalibratedPositions] = useState([]);
+  const [calibrationAccepted, setCalibrationAccepted] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(async() => {
@@ -62,10 +63,16 @@ export default function TfCalibrater() {
     }, 4500);
   };
 
+  const calibrated = calibratedPositions.includes('a') 
+    & calibratedPositions.includes('b') 
+    & calibratedPositions.includes('c') 
+    & calibratedPositions.includes('d');
+
   const handleAcceptFeedback = () => {
-    if(calibratedPositions.length === 4) {
+    if(calibrated) {
       dispatch(setNetState(net));
       dispatch(setClassifierState(classifier));
+      setCalibrationAccepted(true);
       alert('calibration model has been set');
       clearInterval(feedbackLoop);
     } else {
@@ -97,9 +104,10 @@ export default function TfCalibrater() {
           <button name="c" onClick={handleCalibrate}>Calibrate C</button>
           <button name="d" onClick={handleCalibrate}>Calibrate D</button>
         </div>
-        {
-          calibratedPositions.length === 4 && <button onClick={handleAcceptFeedback} >Accept Calibrate</button>
-        }
+        <div>
+          <button className={!calibrated && styles.notVisible} onClick={handleAcceptFeedback}>Accept Calibrate</button>
+          <button className={!calibrationAccepted && styles.notVisible} onClick={togglePlay}>Enter Classroom</button>
+        </div>
       </div>
     </>
   );
