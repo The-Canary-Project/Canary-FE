@@ -1,0 +1,13 @@
+.Results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px; 
+
+  img {
+    width: auto;
+    max-height: 125px;
+  }
+
+}

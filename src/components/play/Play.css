@@ -144,6 +144,8 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  height: 150px;
+
   .empty {
     width: 200px;
   }

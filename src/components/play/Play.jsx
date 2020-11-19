@@ -11,7 +11,8 @@ import {
   setTotalAnswers 
 } from '../../actions/studentActions';
 import { Score } from './Score';
-import { loseMedia, winMedia } from './resultsMedia';
+import { loseMedia, winMedia } from './results/resultsMedia';
+import Results from './results/Results';
 
 export const Play = () => {
   const net = useSelector(state => state.net);
@@ -60,7 +61,7 @@ export const Play = () => {
     if(completed) {
       
       // Render a completed state
-      return <img src={displayResults} alt="results"/>;
+      return <Results displayResults={displayResults} />;
     } else {
       // Render a countdown
       return <h2>Time Remaining: {seconds}</h2>;
@@ -87,7 +88,6 @@ export const Play = () => {
   return (
     <div className={styles.play}>
       <div className={styles.upperDisplay}>
-        
         <Countdown 
           key={question.text}
           date={now + (timer * 1000)}
