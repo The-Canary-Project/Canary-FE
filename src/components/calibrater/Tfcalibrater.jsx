@@ -8,10 +8,8 @@ import { setClassifierState, setNetState } from '../../actions/studentActions';
 import { feedbackElements } from '../../utils/styleContainers';
 import styles from './TfCalibrater.css';
 
-export default function TfCalibrater() {
-
+export default function TfCalibrater({ togglePlay }) {
   const video = useRef();
-  
   const knn = useSelector(state => state.classifier);
   const netState = useSelector(state => state.net);
   const [classifier, setClassifier] = useState();
@@ -20,6 +18,7 @@ export default function TfCalibrater() {
   const [feedbackLoop, setFeedbackLoop] = useState();
   const [isVisible, setVisibility] = useState(false);
   const [calibratedPositions, setCalibratedPositions] = useState([]);
+  const [calibrationAccepted, setCalibrationAccepted] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(async() => {
@@ -31,16 +30,20 @@ export default function TfCalibrater() {
     video.current.srcObject = stream;
 
     setFeedbackLoop(setInterval(async() => {
+      if(classifier.getNumClasses()===0) return;
+
       const image = tf.browser.fromPixels(video.current);
       const logits = net.infer(image, 'conv_preds');
-      // classifier.addExample(logits, 0);
       const result = await classifier.predictClass(logits);
       setFeedback(result.label);
+
       logits.dispose();
       image.dispose();
     }, 500));
 
-    setTimeout(() => train('initial'), 10000);
+
+    
+    return clearInterval(feedbackLoop);
   }, []);
 
   const train = name => {
@@ -70,11 +73,13 @@ export default function TfCalibrater() {
     & calibratedPositions.includes('c')
     & calibratedPositions.includes('d');
 
+
+
   const handleAcceptFeedback = () => {
-    
     if(calibrated) {
       dispatch(setNetState(net));
       dispatch(setClassifierState(classifier));
+      setCalibrationAccepted(true);
       alert('calibration model has been set');
       clearInterval(feedbackLoop);
     } else {
@@ -107,11 +112,11 @@ export default function TfCalibrater() {
           <button name="c" onClick={handleCalibrate}>Calibrate C</button>
           <button name="d" onClick={handleCalibrate}>Calibrate D</button>
         </div>
-        {
+        <div>
           <button className={!calibrated && styles.notVisible} onClick={handleAcceptFeedback}>Accept Calibrate</button>
-          
-        }
-    </div>
+          <button className={!calibrationAccepted && styles.notVisible} onClick={togglePlay}>Enter Classroom</button>
+        </div>
+      </div>
     </>
   );
 }

@@ -138,12 +138,25 @@
   }
 }
 
-.visible {
-  visibility: visible;
+.chatContainer {
+  height: 90%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  
 }
 
-.notVisible {
-  visibility: hidden;
+
+.upperDisplay {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 150px;
+
+  .empty {
+    width: 200px;
+  }
 }
 
 .answers {
