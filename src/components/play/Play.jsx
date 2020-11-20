@@ -45,6 +45,7 @@ export const Play = () => {
       setDisplayResults(false);
       setQuestion(data);
       setQuestionAssets(makeAnswers(data));
+      
       setTimer(data.timer ? data.timer : 15);
       setCountdown(setInterval(async() => {
         const image = tf.browser.fromPixels(video.current);
@@ -74,25 +75,19 @@ export const Play = () => {
   // evaluate game results here and update socket and state score
   if(isComplete) {
     clearInterval(countdown);
-    
+    console.log(questionAssets);
     dispatch(setTotalAnswers());
     if(feedback === questionAssets.correctAnswer) {
       dispatch(setCorrectAnswers());
       setDisplayResults(winMedia); 
       
-      // } else if(
-      //   question.type === 'trueFalse' & 
-      //   questionAssets.correctAnswer === 'a' & 
-      //   feedback === 'a' || 'c') {
-      //   dispatch(setCorrectAnswers());
-      //   setDisplayResults(winMedia);
+    } else if(question.type === 'trueFalse' && questionAssets.correctAnswer === 'a' && (feedback === 'a' || feedback === 'c')) {
+      dispatch(setCorrectAnswers());
+      setDisplayResults(winMedia);
 
-      // } else if(
-      //   question.type === 'trueFalse' & 
-      //   questionAssets.correctAnswer === 'b' & 
-      //   feedback === 'b' || 'd') {
-      //   dispatch(setCorrectAnswers());
-      //   setDisplayResults(winMedia);
+    } else if(question.type === 'trueFalse' && questionAssets.correctAnswer === 'b' && (feedback === 'b' || feedback === 'd')) {
+      dispatch(setCorrectAnswers());
+      setDisplayResults(winMedia);
 
     } else {
       setDisplayResults(loseMedia);

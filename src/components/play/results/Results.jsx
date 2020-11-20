@@ -5,7 +5,7 @@ import styles from './Results.css';
 function Results({ displayResults, }) {
   return (
     <div className={styles.Results}>
-      <h1>Time is up!</h1>
+      <h2>Time is up!</h2>
       <img src={displayResults} alt="results"/>
     </div>
   );

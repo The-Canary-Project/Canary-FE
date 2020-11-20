@@ -6,9 +6,13 @@
   width: 200px; 
   margin: auto;
 
+  h2{
+    margin-bottom: 0px;
+  }
+
   img {
     width: auto;
     max-height: 125px;
   }
 
-}
+}   

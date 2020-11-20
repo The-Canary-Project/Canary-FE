@@ -26,6 +26,7 @@ function multipleChoiceAssets(question) {
   const correctAnswerIndex = question.answers.map(answer => answer.isCorrect).indexOf(true);
 
   const correctAnswer = options[correctAnswerIndex];
+  
   return {
     answerElements,
     correctAnswer
@@ -33,7 +34,7 @@ function multipleChoiceAssets(question) {
 }
 
 function trueFalseAssets(question) {
-  const answerElements = question.answers.map((answer, i) => {
+  const answerElements = question.answers.map((answer) => {
     return (
       <>
         <p>{answer.text}</p>
@@ -44,9 +45,8 @@ function trueFalseAssets(question) {
   });
   
   // find the text of the correct answer
-  const correctAnswerIndex = question.answers.find(answer => answer.isCorrect);
+  const correctAnswerIndex = question.answers.map(answer => answer.isCorrect).indexOf(true);
   const correctAnswer = ['a', 'b'][correctAnswerIndex];
-
   return {
     answerElements,
     correctAnswer
