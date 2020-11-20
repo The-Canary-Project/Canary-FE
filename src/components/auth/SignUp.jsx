@@ -59,7 +59,8 @@ const SignUp = () => {
           onChange={({ target }) => setUserRole(target.value)}
         >
           <option value="student">Student</option>
-          <option value="teacher">Teacher</option>
+          {/* commented out for presentation, add in once rooms enabled */}
+          {/* <option value="teacher">Teacher</option> */}
 
         </select>
         <button>Sign Up</button>
