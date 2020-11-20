@@ -21,10 +21,10 @@ const SignUp = () => {
 
     const signUp = await postSignUp({ userName, password, userRole });
 
-    // set global state here
     dispatch(setUserNameReducer(signUp.userName));
     dispatch(setUserRoleReducer(signUp.userRole));
 
+    if(signUp.status === 500) return history.push('/');
     history.push(`/${signUp.userRole}`);
     
     setUserName('');

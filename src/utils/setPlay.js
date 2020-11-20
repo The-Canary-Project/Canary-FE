@@ -6,26 +6,26 @@ export const makeAnswers = (question) => {
   return (question.type === 'multipleChoice') ? 
     multipleChoiceAssets(question) :
     trueFalseAssets(question);
-
 };
-
 
 function multipleChoiceAssets(question) {
   const options = ['a', 'b', 'c', 'd'];
   const answerElements = question.answers.map((answer, i) => {
     return (
-      <div key={i} >
+      <>
         <h3>{options[i]}</h3>
         <p>{answer.text}</p>
         {answer.imageUrl && 
         <img src={answer.imageUrl} alt={answer.text}/>} 
-      </div>
+      </>
     );
   });
   // find the text of the correct answer
-  const correctAnswerIndex = question.answers.map(answer => answer.isCorrect).indexOf(true);
+  const correctAnswerIndex = question.answers.map(
+    answer => answer.isCorrect).indexOf(true);
 
   const correctAnswer = options[correctAnswerIndex];
+  
   return {
     answerElements,
     correctAnswer
@@ -33,18 +33,20 @@ function multipleChoiceAssets(question) {
 }
 
 function trueFalseAssets(question) {
-  const answerElements = question.answers.map((answer, i) => {
+  const answerElements = question.answers.map((answer) => {
     return (
-      <div key={i}>
+      <>
         <p>{answer.text}</p>
         {answer.imageUrl && 
         <img src={answer.imageUrl} alt={answer.text}/>} 
-      </div>
+      </>
     );
   });
   
   // find the text of the correct answer
-  const correctAnswerIndex = question.answers.find(answer => answer.isCorrect);
+  const correctAnswerIndex = question.answers.map(
+    answer => answer.isCorrect).indexOf(true);
+
   const correctAnswer = ['a', 'b'][correctAnswerIndex];
 
   return {

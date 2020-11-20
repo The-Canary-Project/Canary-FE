@@ -42,6 +42,7 @@
   font-weight: bold;
   text-align: center;
 }
+
 .parent{
   height: 480px;
   width: 640px;
@@ -55,12 +56,10 @@
     width: 642px;
   }
   box-sizing: border-box;
-
 }
 
 .upperCalibration {
   display: flex;
-  
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
@@ -73,6 +72,7 @@
     width: 100px;
   }
 }
+
 .gridparent{
   height: 482px;
   width: 642px;
@@ -84,6 +84,7 @@
   -webkit-transform:rotateY(180deg); /* Safari and Chrome */
   -moz-transform:rotateY(180deg); /* Firefox */
 }
+
 .feedback{
   background-color: green;
   opacity: 0.5;

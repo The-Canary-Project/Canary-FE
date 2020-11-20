@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-constant-condition */
 import React, { useRef, useState, useEffect, useMemo } from 'react';
 import * as tf from '@tensorflow/tfjs';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,6 +13,9 @@ import {
   setTotalAnswers 
 } from '../../actions/studentActions';
 import { Score } from './Score';
+import { loseMedia, winMedia } from './results/resultsMedia';
+import Results from './results/Results';
+import Chat from '../chat/Chat';
 
 export const Play = () => {
   const net = useSelector(state => state.net);
@@ -20,7 +25,7 @@ export const Play = () => {
     answerElements: ['', '', '', ''] 
   });
   const [feedback, setFeedback] = useState();
-  const [result, setResult] = useState();
+  const [displayResults, setDisplayResults] = useState(false);
   const [countdown, setCountdown] = useState();
   const [timer, setTimer] = useState(100);
   const [isComplete, setComplete] = useState(false);
@@ -35,11 +40,13 @@ export const Play = () => {
     video.current.srcObject = stream;
     
     socket.on('RECEIVE_QUESTION', (data) => {
+      
       clearInterval(countdown);
+      setDisplayResults(false);
       setQuestion(data);
       setQuestionAssets(makeAnswers(data));
       
-      setTimer(data.timer ? data.timer : 30);
+      setTimer(data.timer ? data.timer : 15);
       setCountdown(setInterval(async() => {
         const image = tf.browser.fromPixels(video.current);
         const logits = net.infer(image, 'conv_preds');
@@ -48,52 +55,65 @@ export const Play = () => {
         logits.dispose();
         image.dispose();
       }, 500));
+      
       return () => {socket.off('RECEIVE_QUESTION');};
     });
 
+    return clearInterval(countdown);
   }, []);
 
   const renderer = ({ seconds, completed }) => {
     if(completed) {
-      
       // Render a completed state
-      return <h1>Times Up!</h1>;
+      return <Results displayResults={displayResults} />;
     } else {
       // Render a countdown
-      return <span>Time Remaining: {seconds}</span>;
+      return <h2 className={styles.timeRemaining}>Time Remaining: {seconds}</h2>;
     }
   };
 
   // evaluate game results here and update socket and state score
   if(isComplete) {
     clearInterval(countdown);
-    // update user score here
+
     dispatch(setTotalAnswers());
     if(feedback === questionAssets.correctAnswer) {
       dispatch(setCorrectAnswers());
-      setResult('bingo'); 
+      setDisplayResults(winMedia); 
+      
+    } else if(question.type === 'trueFalse' && questionAssets.correctAnswer === 'a' && (feedback === 'a' || feedback === 'c')) {
+      dispatch(setCorrectAnswers());
+      setDisplayResults(winMedia);
+
+    } else if(question.type === 'trueFalse' && questionAssets.correctAnswer === 'b' && (feedback === 'b' || feedback === 'd')) {
+      dispatch(setCorrectAnswers());
+      setDisplayResults(winMedia);
+
     } else {
-      setResult('wrong');
+      setDisplayResults(loseMedia);
     }
     setComplete(false);
   } 
 
   return (
     <div className={styles.play}>
-      <Score />
-      <Countdown 
-        key={question.text}
-        date={now + (timer * 1000)}
-        renderer={renderer}
-        onComplete={() => setComplete(true)}
-      />
-      <h3>question: {question.text}</h3>
-      {result}
-      {/* {questionAssets.answerElements} */}
+      <div className={styles.upperDisplay}>
+        <div className={styles.chatContainer}>
+          <Chat />
+        </div>
+        <Countdown 
+          key={question.text}
+          date={now + (timer * 1000)}
+          renderer={renderer}
+          onComplete={() => setComplete(true)}
+        />
+        <Score />
+      </div>
+      <h3><b>Question:</b> {question.text}</h3>
       <div className={styles.parent}>
         <section>
-          {questionAssets.answerElements[1]}
-          {questionAssets.answerElements[3]}
+          <div className={feedback === 'b' && styles.feedback}>{questionAssets.answerElements[1]}</div>
+          <div className={feedback === 'd' && styles.feedback}>{questionAssets.answerElements[3]}</div>
         </section>
         <div className={styles.centerPlay}>
           <div className={styles.gridparent}>
@@ -102,8 +122,8 @@ export const Play = () => {
           <video ref={video} autoPlay></video>
         </div>
         <section>
-          {questionAssets.answerElements[0]}
-          {questionAssets.answerElements[2]}
+          <div className={feedback === 'a' && styles.feedback}>{questionAssets.answerElements[0]}</div>
+          <div className={feedback === 'c' && styles.feedback}>{questionAssets.answerElements[2]}</div>
         </section>
       </div>
     </div>

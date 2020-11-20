@@ -6,6 +6,11 @@
   opacity: 0.5;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
+  color: yellow;
+  opacity: 0.75;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .b{
@@ -16,6 +21,11 @@
   opacity: 0.5;
   border-left: 1px solid black;
   border-bottom: 1px solid black;
+  color: yellow;
+  opacity: 0.75;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .c{
@@ -26,6 +36,11 @@
   opacity: 0.5;
   border-right: 1px solid black;
   border-top: 1px solid black;
+  color: yellow;
+  opacity: 0.75;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .d{
@@ -36,6 +51,11 @@
   opacity: 0.5;
   border-left: 1px solid black;
   border-top: 1px solid black;
+  color: yellow;
+  opacity: 0.75;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .play {
@@ -43,7 +63,12 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+
+  b {
+    font-weight: 600;
+  }
 }
+
 .parent{
   display: flex;
   justify-content: space-evenly;
@@ -79,7 +104,6 @@
     border-radius: 10px;
   }
   }
-
 }
 
 .upperCalibration {
@@ -107,9 +131,9 @@
   -webkit-transform:rotateY(180deg); /* Safari and Chrome */
   -moz-transform:rotateY(180deg); /* Firefox */
 }
+
 .feedback{
-  background-color: green;
-  opacity: 0.5;
+  background-color: rgba(0, 128, 0, 0.529);
 }
 
 .centerPlay {
@@ -138,16 +162,31 @@
   }
 }
 
-.visible {
-  visibility: visible;
+.chatContainer {
+  height: 90%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
 }
 
-.notVisible {
-  visibility: hidden;
+.upperDisplay {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 500px auto 500px;
+  align-items: center;
+  height: 150px;
+
+  .empty {
+    width: 200px;
+  }
 }
 
 .answers {
   width: 100%;
   height: 500px;
 
+}
+
+.timeRemaining {
+  margin: auto;
 }

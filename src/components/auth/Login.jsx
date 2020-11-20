@@ -17,12 +17,12 @@ const Login = () => {
   const handleSubmit = async(event) => {
     event.preventDefault();
     
-
     const logIn = await postLogin({ userName, password });
-    
+
     dispatch(setUserNameReducer(logIn.userName));
     dispatch(setUserRoleReducer(logIn.userRole));
 
+    if(logIn.status === 500) return history.push('/');
     history.push(`/${logIn.userRole}`);
     
     setUserName('');

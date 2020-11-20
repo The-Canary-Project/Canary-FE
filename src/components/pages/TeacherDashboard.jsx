@@ -14,6 +14,7 @@ export default function TeacherDashboard() {
   useEffect(async() => {
     const user = await getVerify();
     if(!user.userName) return history.push('/');
+    if(user.userRole === 'student') return history.push('/student');
     
     const APIPrompts = await getAllPrompts();
 
@@ -21,7 +22,6 @@ export default function TeacherDashboard() {
   }, []);
   
   const handleClick = ({ target }) => {
-    console.log(target.value);
     socket.emit('SEND_QUESTION', JSON.parse(target.value));
   };
 
