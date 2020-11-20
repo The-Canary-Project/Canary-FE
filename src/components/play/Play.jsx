@@ -55,6 +55,7 @@ export const Play = () => {
         logits.dispose();
         image.dispose();
       }, 500));
+      
       return () => {socket.off('RECEIVE_QUESTION');};
     });
 
@@ -63,7 +64,6 @@ export const Play = () => {
 
   const renderer = ({ seconds, completed }) => {
     if(completed) {
-      
       // Render a completed state
       return <Results displayResults={displayResults} />;
     } else {
@@ -75,7 +75,7 @@ export const Play = () => {
   // evaluate game results here and update socket and state score
   if(isComplete) {
     clearInterval(countdown);
-    console.log(questionAssets);
+
     dispatch(setTotalAnswers());
     if(feedback === questionAssets.correctAnswer) {
       dispatch(setCorrectAnswers());

@@ -22,7 +22,6 @@ export default function TeacherDashboard() {
   }, []);
   
   const handleClick = ({ target }) => {
-    console.log(target.value);
     socket.emit('SEND_QUESTION', JSON.parse(target.value));
   };
 

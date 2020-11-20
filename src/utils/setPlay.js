@@ -6,9 +6,7 @@ export const makeAnswers = (question) => {
   return (question.type === 'multipleChoice') ? 
     multipleChoiceAssets(question) :
     trueFalseAssets(question);
-
 };
-
 
 function multipleChoiceAssets(question) {
   const options = ['a', 'b', 'c', 'd'];
@@ -23,7 +21,8 @@ function multipleChoiceAssets(question) {
     );
   });
   // find the text of the correct answer
-  const correctAnswerIndex = question.answers.map(answer => answer.isCorrect).indexOf(true);
+  const correctAnswerIndex = question.answers.map(
+    answer => answer.isCorrect).indexOf(true);
 
   const correctAnswer = options[correctAnswerIndex];
   
@@ -45,8 +44,11 @@ function trueFalseAssets(question) {
   });
   
   // find the text of the correct answer
-  const correctAnswerIndex = question.answers.map(answer => answer.isCorrect).indexOf(true);
+  const correctAnswerIndex = question.answers.map(
+    answer => answer.isCorrect).indexOf(true);
+
   const correctAnswer = ['a', 'b'][correctAnswerIndex];
+
   return {
     answerElements,
     correctAnswer

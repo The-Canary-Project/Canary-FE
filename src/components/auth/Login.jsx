@@ -17,9 +17,8 @@ const Login = () => {
   const handleSubmit = async(event) => {
     event.preventDefault();
     
-
     const logIn = await postLogin({ userName, password });
-    console.log(logIn);
+
     dispatch(setUserNameReducer(logIn.userName));
     dispatch(setUserRoleReducer(logIn.userRole));
 

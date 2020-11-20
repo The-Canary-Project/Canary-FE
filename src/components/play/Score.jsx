@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import styles from './Score.css'
+import styles from './Score.css';
 
 export const Score = () => {
   const correctAnswers = useSelector(state => state.correctAnswers);

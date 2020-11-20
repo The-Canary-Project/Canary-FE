@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ChatItem from './ChatItem';
 import { setChatItem } from '../../actions/classroomActions';
 import { useSocket } from '../../provider/socketProvider';
-import styles from './Chat.css'
+import styles from './Chat.css';
 
 function ChatList() {
   const socket = useSocket();

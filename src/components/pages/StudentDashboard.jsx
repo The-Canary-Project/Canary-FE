@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TfCalibrater from '../calibrater/Tfcalibrater';
 import { Play } from '../play/Play';
-import Chat from '../chat/Chat';
 import { getVerify } from '../../services/AuthService';
 import { useHistory } from 'react-router-dom';
 
@@ -13,7 +12,6 @@ export default function StudentDashboard() {
 
     if(!user.userName) return history.push('/');
     if(user.userRole === 'teacher') return history.push('/teacher');
-    
   }, []);
 
   const togglePlay = () => {

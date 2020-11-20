@@ -34,6 +34,7 @@ export default function TfCalibrater({ togglePlay }) {
 
       const image = tf.browser.fromPixels(video.current);
       const logits = net.infer(image, 'conv_preds');
+      // classifier.addExample(logits, 0);
       const result = await classifier.predictClass(logits);
       setFeedback(result.label);
 
@@ -53,17 +54,19 @@ export default function TfCalibrater({ togglePlay }) {
   };
  
   const handleCalibrate = ({ target }) => {
-   setCalibratedPositions(state => ([...state, target.name]));
+    setCalibratedPositions(state => ([...state, target.name]));
     setVisibility(true);
+
     const training = setInterval(() => {
       train(target.name);
-      console.log('machine trained');
     }, 250);
+
     setTimeout(() => {
       clearInterval(training);
       setVisibility(false);
     }, 4500);
   };
+
   const calibrated = calibratedPositions.includes('a')
     & calibratedPositions.includes('b')
     & calibratedPositions.includes('c')
@@ -76,8 +79,8 @@ export default function TfCalibrater({ togglePlay }) {
       setCalibrationAccepted(true);
       alert('calibration model has been set');
       clearInterval(feedbackLoop);
+      
     } else {
-      // make message more indicative of which calibrations are needed
       alert('calibration incomplete');
     }
   };
