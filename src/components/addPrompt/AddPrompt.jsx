@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './addPrompt.css';
+import TextInputOnChange from './miniInputHelpers';
 
 export default function AddPrompt() {
   const [text, setText] = useState();
@@ -12,13 +13,12 @@ export default function AddPrompt() {
   return (
     <div className={styles.addPromptContainer}>
       <form>
-        <label htmlFor="text">Text</label>
-        <input 
-          type="text"
-          id="text"
-          name="text"
-          value={text}
-          onChange={e => setText(e.target.value)}
+        <TextInputOnChange 
+          {...{
+            name: text,
+            handleChange: setText,
+            labelTitle: 'Question Text' 
+          }}
         />
         <label htmlFor="imageUrl">Image URL</label>
         <input 
