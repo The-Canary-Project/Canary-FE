@@ -29,13 +29,16 @@ export default function AddPrompt() {
           onChange={e => setImageUrl(e.target.value)}
         />
         <label htmlFor="type">Type of Question</label>
-        <input 
+        <select
           type="text"
           id="type"
           name="type"
           value={type}
           onChange={e => setType(e.target.value)}
-        />
+        >
+          <option value="multipleChoice">Multiple Choice</option>  
+          <option value="trueFalse">True/False</option>
+        </select>
         <label htmlFor="quizId">Quiz Id</label>
         <input 
           type="text"
@@ -52,7 +55,7 @@ export default function AddPrompt() {
           value={categories}
           onChange={e => setCategories(e.target.value)}
         />
-        <label htmlFor="timer">Timer</label>
+        <label htmlFor="timer">Timer (in seconds)</label>
         <input 
           type="text"
           id="timer"
