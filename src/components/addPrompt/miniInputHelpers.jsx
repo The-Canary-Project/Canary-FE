@@ -9,7 +9,7 @@ export default function TextInputOnChange({ name, handleChange, labelTitle }) {
         id={name} 
         type="text"
         name={name}
-        onChange={handleChange}
+        onChange={e => handleChange(e.target.value)}
       />
     </>
   );

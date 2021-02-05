@@ -20,6 +20,14 @@ export default function AddPrompt() {
             labelTitle: 'Question Text' 
           }}
         />
+        {/* 
+        <TextInputOnChange 
+          {...{
+            name: imageUrl,
+            handleChange: setImageUrl,
+            labelTitle: 'Image URL'
+          }}
+        /> */}
         <label htmlFor="imageUrl">Image URL</label>
         <input 
           type="text"
