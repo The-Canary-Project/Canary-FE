@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './addPrompt.css';
 
 export default function AddPrompt() {
   const [text, setText] = useState();
@@ -9,7 +10,7 @@ export default function AddPrompt() {
   const [timer, setTimer] = useState();
 
   return (
-    <div>
+    <div className={styles.addPromptContainer}>
       <form>
         <label htmlFor="text">Text</label>
         <input 
@@ -59,8 +60,6 @@ export default function AddPrompt() {
           value={timer}
           onChange={e => setTimer(e.target.value)}
         />
-
-
       </form>
       
     </div>
