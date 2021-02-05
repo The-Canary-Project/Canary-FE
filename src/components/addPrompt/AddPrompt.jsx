@@ -20,7 +20,6 @@ export default function AddPrompt() {
             labelTitle: 'Question Text' 
           }}
         />
-        
         <TextInputOnChange 
           {...{
             name: imageUrl,
@@ -28,14 +27,6 @@ export default function AddPrompt() {
             labelTitle: 'Image URL'
           }}
         />
-        {/* <label htmlFor="imageUrl">Image URL</label>
-        <input 
-          type="text"
-          id="imageUrl"
-          name="imageUrl"
-          value={imageUrl}
-          onChange={e => setImageUrl(e.target.value)}
-        /> */}
         <label htmlFor="type">Type of Question</label>
         <select
           type="text"
@@ -47,29 +38,26 @@ export default function AddPrompt() {
           <option value="multipleChoice">Multiple Choice</option>  
           <option value="trueFalse">True/False</option>
         </select>
-        <label htmlFor="quizId">Quiz Id</label>
-        <input 
-          type="text"
-          id="quizId"
-          name="quizId"
-          value={quizId}
-          onChange={e => setQuizId(e.target.value)}
+        <TextInputOnChange 
+          {...{
+            name: quizId,
+            handleChange: setQuizId,
+            labelTitle: 'Quiz Id'
+          }}
         />
-        <label htmlFor="categories">Categories</label>
-        <input 
-          type="text"
-          id="categories"
-          name="categories"
-          value={categories}
-          onChange={e => setCategories(e.target.value)}
+        <TextInputOnChange 
+          {...{
+            name: categories,
+            handleChange: setCategories,
+            labelTitle: 'Categories'
+          }}
         />
-        <label htmlFor="timer">Timer (in seconds)</label>
-        <input 
-          type="text"
-          id="timer"
-          name="timer"
-          value={timer}
-          onChange={e => setTimer(e.target.value)}
+        <TextInputOnChange 
+          {...{
+            name: timer,
+            handleChange: setTimer,
+            labelTitle: 'Timer (in seconds)'
+          }}
         />
       </form>
       
