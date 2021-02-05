@@ -4,9 +4,9 @@ export default function AddPrompt() {
   const [text, setText] = useState();
   const [imageUrl, setImageUrl] = useState();
   const [type, setType] = useState();
-  // const [quizId, setQuizId] = useState();
-  // const [categories, setCategories] = useState();
-  // const [timer, setTimer] = useState();
+  const [quizId, setQuizId] = useState();
+  const [categories, setCategories] = useState();
+  const [timer, setTimer] = useState();
 
   return (
     <div>
@@ -35,6 +35,31 @@ export default function AddPrompt() {
           value={type}
           onChange={e => setType(e.target.value)}
         />
+        <label htmlFor="quizId">Quiz Id</label>
+        <input 
+          type="text"
+          id="quizId"
+          name="quizId"
+          value={quizId}
+          onChange={e => setQuizId(e.target.value)}
+        />
+        <label htmlFor="categories">Categories</label>
+        <input 
+          type="text"
+          id="categories"
+          name="categories"
+          value={categories}
+          onChange={e => setCategories(e.target.value)}
+        />
+        <label htmlFor="timer">Timer</label>
+        <input 
+          type="text"
+          id="timer"
+          name="timer"
+          value={timer}
+          onChange={e => setTimer(e.target.value)}
+        />
+
 
       </form>
       
