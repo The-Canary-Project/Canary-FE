@@ -20,22 +20,22 @@ export default function AddPrompt() {
             labelTitle: 'Question Text' 
           }}
         />
-        {/* 
+        
         <TextInputOnChange 
           {...{
             name: imageUrl,
             handleChange: setImageUrl,
             labelTitle: 'Image URL'
           }}
-        /> */}
-        <label htmlFor="imageUrl">Image URL</label>
+        />
+        {/* <label htmlFor="imageUrl">Image URL</label>
         <input 
           type="text"
           id="imageUrl"
           name="imageUrl"
           value={imageUrl}
           onChange={e => setImageUrl(e.target.value)}
-        />
+        /> */}
         <label htmlFor="type">Type of Question</label>
         <select
           type="text"
