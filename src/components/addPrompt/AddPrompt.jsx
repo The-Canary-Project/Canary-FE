@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './addPrompt.css';
-import TextInputOnChange from './miniInputHelpers';
+import { SelectOnChange, TextInputOnChange } from './miniInputHelpers';
 
 export default function AddPrompt() {
   const [text, setText] = useState();
@@ -27,9 +27,17 @@ export default function AddPrompt() {
             labelTitle: 'Image URL'
           }}
         />
-        <label htmlFor="type">Type of Question</label>
+        <SelectOnChange 
+          name={type}
+          handleChange={setType}
+          labelTitle={'Type of Question'}
+          options={[
+            { value: 'multipleChoice', title: 'Multiple Choice' }, 
+            { value: 'trueFalse', title: 'True/False' }
+          ]}
+        />
+        {/* <label htmlFor="type">Type of Question</label>
         <select
-          type="text"
           id="type"
           name="type"
           value={type}
@@ -37,7 +45,7 @@ export default function AddPrompt() {
         >
           <option value="multipleChoice">Multiple Choice</option>  
           <option value="trueFalse">True/False</option>
-        </select>
+        </select> */}
         <TextInputOnChange 
           {...{
             name: quizId,
