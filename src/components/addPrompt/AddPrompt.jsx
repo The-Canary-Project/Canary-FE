@@ -8,7 +8,7 @@ export default function AddPrompt() {
   const [type, setType] = useState();
   const [quizId, setQuizId] = useState();
   const [categories, setCategories] = useState();
-  const [timer, setTimer] = useState();
+  const [timer, setTimer] = useState(15);
 
   return (
     <div className={styles.addPromptContainer}>
@@ -36,16 +36,6 @@ export default function AddPrompt() {
             { value: 'trueFalse', title: 'True/False' }
           ]}
         />
-        {/* <label htmlFor="type">Type of Question</label>
-        <select
-          id="type"
-          name="type"
-          value={type}
-          onChange={e => setType(e.target.value)}
-        >
-          <option value="multipleChoice">Multiple Choice</option>  
-          <option value="trueFalse">True/False</option>
-        </select> */}
         <TextInputOnChange 
           {...{
             name: quizId,
@@ -60,12 +50,24 @@ export default function AddPrompt() {
             labelTitle: 'Categories'
           }}
         />
-        <TextInputOnChange 
+        {/* <TextInputOnChange 
           {...{
             name: timer,
             handleChange: setTimer,
             labelTitle: 'Timer (in seconds)'
           }}
+        /> */}
+        <SelectOnChange 
+          name={timer}
+          handleChange={(v) => setTimer(Number(v))}
+          labelTitle={'Timer (in seconds)'}
+          options={[
+            { value: '5', title: '5' }, 
+            { value: '10', title: '10' }, 
+            { value: '15', title: '15' }, 
+            { value: '20', title: '20' }, 
+            { value: '30', title: '30' }, 
+          ]}
         />
       </form>
       
