@@ -8,7 +8,7 @@ export default function AddPrompt() {
   const [imageUrl, setImageUrl] = useState('');
   const [type, setType] = useState('');
   const [quizId, setQuizId] = useState('');
-  const [categories, setCategories] = useState();
+  const [categories, setCategories] = useState('');
   const [timer, setTimer] = useState(15);
 
   return (

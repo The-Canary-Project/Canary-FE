@@ -48,7 +48,10 @@ export function SelectOnChange({
 }
 
 SelectOnChange.propTypes = {
-  name: PropTypes.string.isRequired, 
+  name: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]), 
   handleChange: PropTypes.func.isRequired,
   labelTitle: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({
