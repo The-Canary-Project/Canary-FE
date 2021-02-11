@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import styles from './addPrompt.css';
 import { SelectOnChange, TextInputOnChange } from './miniInputHelpers';
+import AddQuestions from './addQuestions/AddQuestions';
 
 export default function AddPrompt() {
-  const [text, setText] = useState();
-  const [imageUrl, setImageUrl] = useState();
-  const [type, setType] = useState();
-  const [quizId, setQuizId] = useState();
+  const [text, setText] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [type, setType] = useState('');
+  const [quizId, setQuizId] = useState('');
   const [categories, setCategories] = useState();
   const [timer, setTimer] = useState(15);
 
@@ -36,6 +37,9 @@ export default function AddPrompt() {
             { value: 'trueFalse', title: 'True/False' }
           ]}
         />
+        {
+          type && <AddQuestions {...{ type }}/>
+        }
         <TextInputOnChange 
           {...{
             name: quizId,
@@ -50,13 +54,6 @@ export default function AddPrompt() {
             labelTitle: 'Categories'
           }}
         />
-        {/* <TextInputOnChange 
-          {...{
-            name: timer,
-            handleChange: setTimer,
-            labelTitle: 'Timer (in seconds)'
-          }}
-        /> */}
         <SelectOnChange 
           name={timer}
           handleChange={(v) => setTimer(Number(v))}
