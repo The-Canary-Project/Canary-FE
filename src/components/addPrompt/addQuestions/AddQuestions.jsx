@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import MultipleChoiceQuestions from './MultipleChoiceQuestions';
+import TrueFalseQuestions from './TrueFalseQuestions';
 
 export default function AddQuestions({ type }) {
-  return (
-    <div>
-      <h1>{type}</h1>
-    </div>
-  );
+  if(type === 'multipleChoice') return <MultipleChoiceQuestions />;
+  if(type === 'trueFalse') return <TrueFalseQuestions />;
 }
 
 AddQuestions.propTypes = {
